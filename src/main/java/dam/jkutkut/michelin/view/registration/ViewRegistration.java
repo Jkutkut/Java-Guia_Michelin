@@ -58,6 +58,9 @@ public class ViewRegistration extends JFrame implements WindowListener {
     }
 
     // GETTERS
+    public JPanel getMenu() {
+        return jpBody;
+    }
 
     // Window listener methods
     @Override

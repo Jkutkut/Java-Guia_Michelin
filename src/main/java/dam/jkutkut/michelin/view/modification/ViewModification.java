@@ -57,6 +57,9 @@ public class ViewModification extends JFrame implements WindowListener {
     }
 
     // GETTERS
+    public JPanel getMenu() {
+        return jpBody;
+    }
 
     // Window listener methods
     @Override

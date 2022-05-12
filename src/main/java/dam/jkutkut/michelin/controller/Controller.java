@@ -22,6 +22,8 @@ public class Controller implements ActionListener {
         this.vModification = vModification;
         this.vRegistration = vRegistration;
         this.vQuery = vQuery;
+
+        vWindow.openWindow(vQuery);
     }
 
     @Override

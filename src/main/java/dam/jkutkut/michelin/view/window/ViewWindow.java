@@ -1,6 +1,7 @@
 package dam.jkutkut.michelin.view.window;
 
 import dam.jkutkut.michelin.controller.Controller;
+import dam.jkutkut.michelin.view.query.ViewQuery;
 
 import javax.swing.*;
 import java.awt.event.WindowEvent;
@@ -8,20 +9,21 @@ import java.awt.event.WindowListener;
 
 public class ViewWindow extends JFrame implements WindowListener {
     private static final String TITLE = "";
+
     private JPanel jpBody;
     private JMenu jmMode;
     private JMenuItem jmiQuery;
     private JMenuItem jmiRegistration;
     private JMenuItem jmiModification;
-    private JPanel jpMenuContainer;
+    private JScrollPane jspMenuContainer;
 
     public ViewWindow() {
         setTitle(TITLE);
-        // setContentPane(jpBody);
+        setContentPane(jpBody);
         pack();
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         setLocationRelativeTo(null);
-        // setSize(500, 200);
+         setSize(1500, 800);
         addWindowListener(this);
 
         initComponents();
@@ -32,8 +34,14 @@ public class ViewWindow extends JFrame implements WindowListener {
     }
 
     // SETTERS
-    public void setControlador(Controller controlador) {
+    public void setController(Controller controller) {
+        jmiModification.addActionListener(controller);
+        jmiQuery.addActionListener(controller);
+        jmiRegistration.addActionListener(controller);
+    }
 
+    public void openWindow(ViewQuery window) {
+        jspMenuContainer.setViewportView(window.getMenu());
     }
 
     // GETTERS

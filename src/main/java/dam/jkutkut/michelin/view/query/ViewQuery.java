@@ -45,6 +45,9 @@ public class ViewQuery extends JFrame implements WindowListener {
     }
 
     // GETTERS
+    public JPanel getMenu() {
+        return jpBody;
+    }
 
     // Window listener methods
     @Override
