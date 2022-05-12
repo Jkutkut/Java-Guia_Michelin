@@ -2,9 +2,9 @@ package dam.jkutkut.michelin.main;
 
 import com.formdev.flatlaf.FlatDarculaLaf;
 import dam.jkutkut.michelin.controller.Controller;
-import dam.jkutkut.michelin.view.modification.ViewModification;
-import dam.jkutkut.michelin.view.query.ViewQuery;
 import dam.jkutkut.michelin.view.registration.ViewRegistration;
+import dam.jkutkut.michelin.view.query.ViewQuery;
+import dam.jkutkut.michelin.view.modification.ViewModification;
 import dam.jkutkut.michelin.view.window.ViewWindow;
 
 import javax.swing.*;
@@ -21,16 +21,16 @@ public class Main {
             @Override
             public void run() {
                 ViewWindow viewWindow = new ViewWindow();
-                ViewModification viewModification = new ViewModification();
                 ViewRegistration viewRegistration = new ViewRegistration();
+                ViewModification viewModification = new ViewModification();
                 ViewQuery viewQuery = new ViewQuery();
 
 
                 Controller controller = new Controller(
                     viewWindow,
-                    viewModification,
+                        viewRegistration,
                     viewQuery,
-                    viewRegistration
+                        viewModification
                 );
                 viewWindow.setController(controller);
 //                viewModification.setController(controller);

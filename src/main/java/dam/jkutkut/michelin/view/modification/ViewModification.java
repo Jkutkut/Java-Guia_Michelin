@@ -1,6 +1,7 @@
 package dam.jkutkut.michelin.view.modification;
 
 import dam.jkutkut.michelin.controller.Controller;
+import dam.jkutkut.michelin.model.Restaurant;
 import dam.jkutkut.michelin.view.MichelinMenu;
 
 import javax.swing.*;
@@ -34,6 +35,7 @@ public class ViewModification extends JFrame implements WindowListener, Michelin
     private JLabel lblMaxPrice;
     private JLabel lblPhone;
     private JLabel lblWeb;
+    private JButton btnSearch;
     private JComboBox cmbType;
 
     public ViewModification() {
@@ -49,7 +51,15 @@ public class ViewModification extends JFrame implements WindowListener, Michelin
     }
 
     private void initComponents() {
+        cmbRegion.setModel(new DefaultComboBoxModel(Restaurant.REGIONS));
+        cmbType.setModel(new DefaultComboBoxModel(Restaurant.TYPES));
 
+        spDistinction.setModel(new SpinnerNumberModel(
+            Restaurant.MIN_DISTINCTION,
+            Restaurant.MIN_DISTINCTION,
+            Restaurant.MAX_DISTINCTION,
+            1
+        ));
     }
 
     // SETTERS

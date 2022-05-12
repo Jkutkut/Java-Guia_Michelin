@@ -34,7 +34,6 @@ public class ViewRegistration extends JFrame implements WindowListener, Michelin
     private JLabel lblMaxPrice;
     private JLabel lblPhone;
     private JLabel lblWeb;
-    private JButton btnSearch;
     private JComboBox cmbType;
 
     public ViewRegistration() {

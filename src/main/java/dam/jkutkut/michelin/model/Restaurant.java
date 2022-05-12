@@ -39,6 +39,9 @@ public class Restaurant {
         "All stars"
     };
 
+    public static final int MIN_DISTINCTION = 1;
+    public static final int MAX_DISTINCTION = 3;
+
 
 
 }
