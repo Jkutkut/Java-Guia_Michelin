@@ -1,9 +1,6 @@
 package dam.jkutkut.michelin.view.window;
 
 import dam.jkutkut.michelin.controller.Controller;
-import dam.jkutkut.michelin.view.modification.ViewModification;
-import dam.jkutkut.michelin.view.query.ViewQuery;
-import dam.jkutkut.michelin.view.registration.ViewRegistration;
 
 import javax.swing.*;
 import java.awt.event.WindowEvent;
@@ -11,6 +8,12 @@ import java.awt.event.WindowListener;
 
 public class ViewWindow extends JFrame implements WindowListener {
     private static final String TITLE = "";
+    private JPanel jpBody;
+    private JMenu jmMode;
+    private JMenuItem jmiQuery;
+    private JMenuItem jmiRegistration;
+    private JMenuItem jmiModification;
+    private JPanel jpMenuContainer;
 
     public ViewWindow() {
         setTitle(TITLE);
