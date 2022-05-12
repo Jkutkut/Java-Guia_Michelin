@@ -1,4 +1,4 @@
-package dam.jkutkut.michelin.view.query;
+package dam.jkutkut.michelin.view.registration;
 
 import dam.jkutkut.michelin.controller.Controller;
 
@@ -6,10 +6,10 @@ import javax.swing.*;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
-public class ViewQuery extends JFrame implements WindowListener {
+public class ViewRegistration extends JFrame implements WindowListener {
     private static final String TITLE = "";
 
-    public ViewQuery() {
+    public ViewRegistration() {
         setTitle(TITLE);
         // setContentPane(jpBody);
         pack();
