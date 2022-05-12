@@ -1,5 +1,6 @@
 package dam.jkutkut.michelin.controller;
 
+import dam.jkutkut.exception.InvalidDataException;
 import dam.jkutkut.michelin.view.registration.ViewRegistration;
 import dam.jkutkut.michelin.view.query.ViewQuery;
 import dam.jkutkut.michelin.view.modification.ViewModification;
@@ -23,7 +24,7 @@ public class Controller implements ActionListener {
         this.vRegistration = vRegistration;
         this.vQuery = vQuery;
 
-        vWindow.openWindow(vQuery);
+        vWindow.openWindow(vRegistration);
     }
 
     @Override
@@ -43,4 +44,22 @@ public class Controller implements ActionListener {
         }
     }
 
+    public void registerRestaurant() {
+        try {
+//            String nombre
+
+            vRegistration.clearError();
+        }
+        catch (InvalidDataException e) {
+            vRegistration.setError(e.getMessage());
+        }
+    }
+
+    public void searchRestaurants() {
+
+    }
+
+    public void consultRestaurants() {
+
+    }
 }
