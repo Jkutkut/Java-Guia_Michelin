@@ -32,10 +32,13 @@ public class Restaurant {
         "Fusion"
     };
 
-    private static final int[] DISTINCTIONS = {
-        1, 2, 3
+    public static final String[] DISTINCTIONS = {
+        "1 star",
+        "2 stars",
+        "3 stars",
+        "All stars"
     };
 
-    
+
 
 }

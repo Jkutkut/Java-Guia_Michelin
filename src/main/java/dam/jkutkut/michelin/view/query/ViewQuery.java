@@ -1,6 +1,7 @@
 package dam.jkutkut.michelin.view.query;
 
 import dam.jkutkut.michelin.controller.Controller;
+import dam.jkutkut.michelin.model.Restaurant;
 
 import javax.swing.*;
 import java.awt.event.WindowEvent;
@@ -36,12 +37,15 @@ public class ViewQuery extends JFrame implements WindowListener {
     }
 
     private void initComponents() {
-
+        cmbRegion.setModel(new DefaultComboBoxModel(Restaurant.REGIONS));
+        cmbDistinction.setModel(new DefaultComboBoxModel(Restaurant.DISTINCTIONS));
+        cmbDistinction.setSelectedIndex(Restaurant.DISTINCTIONS.length - 1);
     }
 
     // SETTERS
     public void setControlador(Controller controlador) {
-
+        btnSearch.addActionListener(controlador);
+        btnDelete.addActionListener(controlador);
     }
 
     // GETTERS
