@@ -24,6 +24,7 @@ public class ViewQuery extends JFrame implements WindowListener, MichelinMenu {
     private JScrollPane jspTable;
     private JTable tableRestaurants;
     private JButton btnDelete;
+    private JLabel lblError;
 
     public ViewQuery() {
         setTitle(TITLE);
@@ -52,6 +53,17 @@ public class ViewQuery extends JFrame implements WindowListener, MichelinMenu {
     // GETTERS
     public JPanel getMenu() {
         return jpBody;
+    }
+
+    public void setError(String msg) {
+        if (msg == null || msg.isEmpty())
+            lblError.setText("");
+        else
+            lblError.setText(msg);
+    }
+
+    public void clearError() {
+        lblError.setText(null);
     }
 
     // Window listener methods

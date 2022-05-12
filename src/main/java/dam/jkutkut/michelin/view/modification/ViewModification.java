@@ -37,6 +37,7 @@ public class ViewModification extends JFrame implements WindowListener, Michelin
     private JLabel lblWeb;
     private JButton btnSearch;
     private JComboBox cmbType;
+    private JLabel lblError;
 
     public ViewModification() {
         setTitle(TITLE);
@@ -70,6 +71,17 @@ public class ViewModification extends JFrame implements WindowListener, Michelin
     // GETTERS
     public JPanel getMenu() {
         return jpBody;
+    }
+
+    public void setError(String msg) {
+        if (msg == null || msg.isEmpty())
+            lblError.setText("");
+        else
+            lblError.setText(msg);
+    }
+
+    public void clearError() {
+        lblError.setText(null);
     }
 
     // Window listener methods

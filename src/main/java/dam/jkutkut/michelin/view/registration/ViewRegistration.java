@@ -35,6 +35,7 @@ public class ViewRegistration extends JFrame implements WindowListener, Michelin
     private JLabel lblPhone;
     private JLabel lblWeb;
     private JComboBox cmbType;
+    private JLabel lblError;
 
     public ViewRegistration() {
         setTitle(TITLE);
@@ -55,6 +56,17 @@ public class ViewRegistration extends JFrame implements WindowListener, Michelin
     // SETTERS
     public void setControlador(Controller controlador) {
 
+    }
+
+    public void setError(String msg) {
+        if (msg == null || msg.isEmpty())
+            lblError.setText("");
+        else
+            lblError.setText(msg);
+    }
+
+    public void clearError() {
+        lblError.setText(null);
     }
 
     // GETTERS

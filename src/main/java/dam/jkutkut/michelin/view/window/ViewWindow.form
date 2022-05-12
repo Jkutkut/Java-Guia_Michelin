@@ -54,7 +54,7 @@
           </grid>
         </constraints>
         <properties/>
-        <border type="none"/>
+        <border type="empty"/>
         <children/>
       </scrollpane>
     </children>
