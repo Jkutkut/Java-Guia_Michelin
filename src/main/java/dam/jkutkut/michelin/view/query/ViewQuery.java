@@ -17,6 +17,11 @@ public class ViewQuery extends JFrame implements WindowListener {
     private JButton btnSearch;
     private JLabel lblRegion;
     private JLabel lblDistinction;
+    private JPanel jpQuery;
+    private JLabel lblQueryTitle;
+    private JScrollPane jspTable;
+    private JTable tableRestaurants;
+    private JButton btnDelete;
 
     public ViewQuery() {
         setTitle(TITLE);
