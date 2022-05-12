@@ -8,6 +8,15 @@ import java.awt.event.WindowListener;
 
 public class ViewQuery extends JFrame implements WindowListener {
     private static final String TITLE = "";
+    private JPanel jpBody;
+    private JLabel lblTitle;
+    private JPanel jpFilterForm;
+    private JLabel lblFilterTitle;
+    private JComboBox cmbRegion;
+    private JComboBox cmbDistinction;
+    private JButton btnSearch;
+    private JLabel lblRegion;
+    private JLabel lblDistinction;
 
     public ViewQuery() {
         setTitle(TITLE);
