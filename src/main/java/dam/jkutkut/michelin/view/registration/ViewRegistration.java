@@ -15,7 +15,6 @@ public class ViewRegistration extends JFrame implements WindowListener {
     private JButton btnSubmit;
     private JButton btnClear;
     private JTextField txtfName;
-    private JTextField txtfType;
     private JComboBox cmbRegion;
     private JTextField txtfCity;
     private JTextField txtfAddress;
@@ -34,6 +33,8 @@ public class ViewRegistration extends JFrame implements WindowListener {
     private JLabel lblMaxPrice;
     private JLabel lblPhone;
     private JLabel lblWeb;
+    private JButton btnSearch;
+    private JComboBox cmbType;
 
     public ViewRegistration() {
         setTitle(TITLE);
