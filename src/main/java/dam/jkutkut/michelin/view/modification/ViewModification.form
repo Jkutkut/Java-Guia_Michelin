@@ -14,7 +14,7 @@
         </constraints>
         <properties>
           <font size="20"/>
-          <text value="Register Restaurant:"/>
+          <text value="Modify Restaurant:"/>
         </properties>
       </component>
       <vspacer id="a2b7c">

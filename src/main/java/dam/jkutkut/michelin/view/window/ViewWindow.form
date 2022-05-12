@@ -25,7 +25,7 @@
               <component id="1fbb1" class="javax.swing.JMenuItem" binding="jmiQuery">
                 <constraints/>
                 <properties>
-                  <text value="Restaurant Query"/>
+                  <text value="Consult Restaurant"/>
                 </properties>
               </component>
               <component id="d36ef" class="javax.swing.JMenuItem" binding="jmiRegistration">
