@@ -24,4 +24,18 @@ public class Restaurant {
         "Valencia"
     };
 
+    public static final String[] TYPES = {
+        "Creative",
+        "Modern",
+        "Traditional",
+        "Regional",
+        "Fusion"
+    };
+
+    private static final int[] DISTINCTIONS = {
+        1, 2, 3
+    };
+
+    
+
 }
