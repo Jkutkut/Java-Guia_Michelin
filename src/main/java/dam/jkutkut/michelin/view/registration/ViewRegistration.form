@@ -190,7 +190,7 @@
             </constraints>
             <properties>
               <foreground color="-4507335"/>
-              <text value="Label"/>
+              <text value=""/>
             </properties>
           </component>
         </children>

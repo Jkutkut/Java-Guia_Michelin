@@ -1,6 +1,7 @@
 package dam.jkutkut.michelin.view.registration;
 
 import dam.jkutkut.michelin.controller.Controller;
+import dam.jkutkut.michelin.model.Restaurant;
 import dam.jkutkut.michelin.view.MichelinMenu;
 
 import javax.swing.*;
@@ -50,7 +51,15 @@ public class ViewRegistration extends JFrame implements WindowListener, Michelin
     }
 
     private void initComponents() {
+        cmbType.setModel(new DefaultComboBoxModel(Restaurant.TYPES));
+        cmbRegion.setModel(new DefaultComboBoxModel(Restaurant.REGIONS));
 
+        spDistinction.setModel(new SpinnerNumberModel(
+            Restaurant.MIN_DISTINCTION,
+            Restaurant.MIN_DISTINCTION,
+            Restaurant.MAX_DISTINCTION,
+            1
+        ));
     }
 
     // SETTERS
@@ -72,6 +81,10 @@ public class ViewRegistration extends JFrame implements WindowListener, Michelin
     // GETTERS
     public JPanel getMenu() {
         return jpBody;
+    }
+
+    public String getName() {
+        return txtfName.getText();
     }
 
     // Window listener methods

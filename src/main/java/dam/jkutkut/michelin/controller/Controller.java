@@ -46,7 +46,8 @@ public class Controller implements ActionListener {
 
     public void registerRestaurant() {
         try {
-//            String nombre
+            String name = vRegistration.getName();
+
 
             vRegistration.clearError();
         }
