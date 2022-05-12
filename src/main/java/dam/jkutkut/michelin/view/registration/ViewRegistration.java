@@ -8,6 +8,32 @@ import java.awt.event.WindowListener;
 
 public class ViewRegistration extends JFrame implements WindowListener {
     private static final String TITLE = "";
+    private JPanel jpBody;
+    private JLabel lblTitle;
+    private JPanel jpForm;
+    private JPanel jpBtns;
+    private JButton btnSubmit;
+    private JButton btnClear;
+    private JTextField txtfName;
+    private JTextField txtfType;
+    private JComboBox cmbRegion;
+    private JTextField txtfCity;
+    private JTextField txtfAddress;
+    private JSpinner spDistinction;
+    private JTextField txtfMinPrice;
+    private JTextField txtfMaxPrice;
+    private JTextField txtfPhone;
+    private JTextField txtfWeb;
+    private JLabel lblName;
+    private JLabel lblType;
+    private JLabel lblRegion;
+    private JLabel lblCity;
+    private JLabel lblAddress;
+    private JLabel lblDistinction;
+    private JLabel lblMinPrice;
+    private JLabel lblMaxPrice;
+    private JLabel lblPhone;
+    private JLabel lblWeb;
 
     public ViewRegistration() {
         setTitle(TITLE);
