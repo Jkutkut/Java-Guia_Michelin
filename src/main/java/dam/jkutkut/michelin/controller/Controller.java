@@ -32,6 +32,15 @@ public class Controller implements ActionListener {
 //            JButton button = (JButton) e.getSource();
 //            if (button == )
 //        }
+        if (e.getSource() instanceof JMenuItem) {
+            JMenuItem menuItem = (JMenuItem) e.getSource();
+            if (menuItem == vWindow.getJmiQuery())
+                vWindow.openWindow(vQuery);
+            else if (menuItem == vWindow.getJmiModification())
+                vWindow.openWindow(vModification);
+            else if (menuItem == vWindow.getJmiRegistration())
+                vWindow.openWindow(vRegistration);
+        }
     }
 
 }

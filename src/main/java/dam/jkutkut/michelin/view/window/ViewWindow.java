@@ -1,6 +1,7 @@
 package dam.jkutkut.michelin.view.window;
 
 import dam.jkutkut.michelin.controller.Controller;
+import dam.jkutkut.michelin.view.MichelinMenu;
 import dam.jkutkut.michelin.view.query.ViewQuery;
 
 import javax.swing.*;
@@ -40,11 +41,23 @@ public class ViewWindow extends JFrame implements WindowListener {
         jmiRegistration.addActionListener(controller);
     }
 
-    public void openWindow(ViewQuery window) {
+    public void openWindow(MichelinMenu window) {
         jspMenuContainer.setViewportView(window.getMenu());
     }
 
     // GETTERS
+
+    public JMenuItem getJmiQuery() {
+        return jmiQuery;
+    }
+
+    public JMenuItem getJmiModification() {
+        return jmiModification;
+    }
+
+    public JMenuItem getJmiRegistration() {
+        return jmiRegistration;
+    }
 
     // Window listener methods
     @Override

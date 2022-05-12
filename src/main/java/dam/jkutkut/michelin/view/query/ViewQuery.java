@@ -2,12 +2,13 @@ package dam.jkutkut.michelin.view.query;
 
 import dam.jkutkut.michelin.controller.Controller;
 import dam.jkutkut.michelin.model.Restaurant;
+import dam.jkutkut.michelin.view.MichelinMenu;
 
 import javax.swing.*;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
-public class ViewQuery extends JFrame implements WindowListener {
+public class ViewQuery extends JFrame implements WindowListener, MichelinMenu {
     private static final String TITLE = "";
     private JPanel jpBody;
     private JLabel lblTitle;
