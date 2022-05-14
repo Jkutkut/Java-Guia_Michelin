@@ -49,104 +49,136 @@ public class Restaurant {
     private static final String PHONE_REGEX = "^(\\+\\d{2,3})? ?\\d{3} ?\\d{3} ?\\d{3}$";
     private static final String WEB_REGEX = "(http[s]?:\\/\\/)?(ww[w2]\\.)?(([a-zA-Z0-9\\-]+\\.)+([a-zA-Z\\-])+)";
 
+    private static final String INVALID_NAME_MESSAGE = "Invalid name";
+    private static final String INVALID_REGION_MESSAGE = "Invalid region";
+    private static final String INVALID_CITY_MESSAGE = "Invalid city";
+    private static final String INVALID_TYPE_MESSAGE = "Invalid type";
+    private static final String INVALID_DISTINCTION_MESSAGE = "Invalid distinction: value must be in range [" + MIN_DISTINCTION + ", " + MAX_DISTINCTION + "]";
+    private static final String INVALID_ADDRESS_MESSAGE = "Invalid address";
+    private static final String INVALID_MIN_PRICE_MESSAGE = "Invalid min price";
+    private static final String INVALID_MAX_PRICE_MESSAGE = "Invalid max price";
+    private static final String INVALID_PHONE_MESSAGE = "Invalid phone";
+    private static final String INVALID_WEB_MESSAGE = "Invalid web";
+
     private String name;
     private String region;
-    private String type;
+    private String city;
     private int distinction;
+    private String address;
     private double minPrice;
     private double maxPrice;
+    private String type;
     private String phone;
     private String web;
 
     public Restaurant() {
         this.name = null;
         this.region = null;
+        this.city = null;
         this.type = null;
         this.distinction = 0;
+        this.address = null;
         this.minPrice = NULL_PRICE;
         this.maxPrice = NULL_PRICE;
         this.phone = null;
         this.web = null;
     }
 
-    public Restaurant(String name, String region, String type, int distinction, double minPrice, double maxPrice, String phone, String web) {
+    public Restaurant(String name, String region, String city, int distinction, String address, double minPrice, double maxPrice, String type, String phone, String web) {
         this.setName(name);
         this.setRegion(region);
-        this.setType(type);
+        this.setCity(city);
         this.setDistinction(distinction);
+        this.setAddress(address);
         this.setMinPrice(minPrice);
         this.setMaxPrice(maxPrice);
+        this.setType(type);
         this.setPhone(phone);
         this.setWeb(web);
-
     }
 
     // GETTERS
     public void validate() throws InvalidDataException {
         if (!isValidName(this.name))
-            throw new InvalidDataException("Invalid name");
+            throw new InvalidDataException(INVALID_NAME_MESSAGE);
         if (!isValidRegion(this.region))
-            throw new InvalidDataException("Invalid region");
-        if (!isValidType(this.type))
-            throw new InvalidDataException("Invalid type");
+            throw new InvalidDataException(INVALID_REGION_MESSAGE);
+        if (!isValidCity(this.city))
+            throw new InvalidDataException(INVALID_CITY_MESSAGE);
         if (!isValidDistinction(this.distinction))
-            throw new InvalidDataException("Invalid distinction");
+            throw new InvalidDataException(INVALID_DISTINCTION_MESSAGE);
+        if (!isValidAddress(this.address))
+            throw new InvalidDataException(INVALID_ADDRESS_MESSAGE);
         if (!isValidMinPrice(this.minPrice, this.maxPrice))
-            throw new InvalidDataException("Invalid min price");
+            throw new InvalidDataException(INVALID_MIN_PRICE_MESSAGE);
         if (!isValidMaxPrice(this.maxPrice, this.minPrice))
-            throw new InvalidDataException("Invalid max price");
+            throw new InvalidDataException(INVALID_MAX_PRICE_MESSAGE);
+        if (!isValidType(this.type))
+            throw new InvalidDataException(INVALID_TYPE_MESSAGE);
         if (!isValidPhone(this.phone))
-            throw new InvalidDataException("Invalid phone");
+            throw new InvalidDataException(INVALID_PHONE_MESSAGE);
         if (!isValidWeb(this.web))
-            throw new InvalidDataException("Invalid web");
+            throw new InvalidDataException(INVALID_WEB_MESSAGE);
     }
 
     // SETTERS
     public void setName(String name) {
         if (!isValidName(name))
-            throw new InvalidDataException("Invalid name");
+            throw new InvalidDataException(INVALID_NAME_MESSAGE);
         this.name = name;
     }
 
     public void setRegion(String region) {
         if (!isValidRegion(region))
-            throw new InvalidDataException("Invalid region");
+            throw new InvalidDataException(INVALID_REGION_MESSAGE);
         this.region = region;
     }
 
-    public void setType(String type) {
-        if (!isValidType(type))
-            throw new InvalidDataException("Invalid type");
-        this.type = type;
+    public void setCity(String city) {
+        if (!isValidCity(city))
+            throw new InvalidDataException(INVALID_CITY_MESSAGE);
+        this.city = city;
     }
 
     public void setDistinction(int distinction) {
         if (!isValidDistinction(distinction))
-            throw new InvalidDataException("Invalid distinction: value must be in range", MIN_DISTINCTION, MAX_DISTINCTION);
+            throw new InvalidDataException(INVALID_DISTINCTION_MESSAGE);
         this.distinction = distinction;
+    }
+
+    public void setAddress(String address) {
+        if (!isValidAddress(address))
+            throw new InvalidDataException(INVALID_ADDRESS_MESSAGE);
+        this.address = address;
     }
 
     public void setMinPrice(double minPrice) {
         if (!isValidMinPrice(minPrice, this.maxPrice))
-            throw new InvalidDataException("Invalid minimum price");
+            throw new InvalidDataException(INVALID_MIN_PRICE_MESSAGE);
         this.minPrice = minPrice;
     }
 
     public void setMaxPrice(double maxPrice) {
         if (!isValidMaxPrice(maxPrice, this.minPrice))
-            throw new InvalidDataException("Invalid maximum price");
+            throw new InvalidDataException(INVALID_MAX_PRICE_MESSAGE);
         this.maxPrice = maxPrice;
+    }
+
+    public void setType(String type) {
+        if (!isValidType(type))
+            throw new InvalidDataException(INVALID_TYPE_MESSAGE);
+        this.type = type;
     }
 
     public void setPhone(String phone) {
         if (!isValidPhone(phone))
-            throw new InvalidDataException("Invalid phone");
+            throw new InvalidDataException(INVALID_PHONE_MESSAGE);
         this.phone = phone;
     }
 
     public void setWeb(String web) {
         if (!isValidWeb(web))
-            throw new InvalidDataException("Invalid web");
+            throw new InvalidDataException(INVALID_WEB_MESSAGE);
         this.web = web;
     }
 
@@ -164,17 +196,16 @@ public class Restaurant {
         return false;
     }
 
-    public static boolean isValidType(String type) {
-        if (type == null || type.isBlank())
-            return false;
-        for (String t : TYPES)
-            if (t.equals(type))
-                return true;
-        return false;
+    public static boolean isValidCity(String city) {
+        return city != null && !city.isBlank();
     }
 
     public static boolean isValidDistinction(int distinction) {
         return distinction >= MIN_DISTINCTION && distinction <= MAX_DISTINCTION;
+    }
+
+    public static boolean isValidAddress(String address) {
+        return address != null && !address.isBlank();
     }
 
     public static boolean isValidMinPrice(double minPrice, double maxPrice) {
@@ -187,6 +218,15 @@ public class Restaurant {
         if (minPrice != NULL_PRICE)
             return maxPrice >= minPrice && maxPrice > 0;
         return maxPrice > 0;
+    }
+
+    public static boolean isValidType(String type) {
+        if (type == null || type.isBlank())
+            return false;
+        for (String t : TYPES)
+            if (t.equals(type))
+                return true;
+        return false;
     }
 
     public static boolean isValidPhone(String phone) {
