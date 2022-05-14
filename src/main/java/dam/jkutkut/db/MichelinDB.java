@@ -19,28 +19,35 @@ public class MichelinDB extends AccessDB {
     public ArrayList<Restaurant> getRestaurants() {
         // SELECT * FROM TABLE WHERE COLUMN_ID = '%s'
         String query = String.format(
-                "SELECT * FROM %s WHERE %s = ?;",
+                "SELECT * FROM %s;",
                 TABLE_NAME,
                 COLUMN_ID
         );
 
-//        String errorReason = INVALID_USERNAME_OR_PASSWORD;
-//
-//        ArrayList<Object[]> data = SQLiteQuery.get(
-//                this,
-//                1,
-//                query,
-//                username
-//        );
-//
-//        if (data.size() == 0)
-//            throw new InvalidDataException(errorReason);
-//
-//        String passwd = (String) data.get(0)[0];
-//
-//        if (!passwd.equals(password))
-//            throw new InvalidDataException(errorReason);
-        return null;
+        ArrayList<Object[]> data = SQLiteQuery.get(
+                this,
+                10,
+                query
+        );
+
+        ArrayList<Restaurant> restaurants = new ArrayList<>();
+        Restaurant r;
+        for (Object[] row : data) {
+            r = new Restaurant(
+                (String) row[0],
+                (String) row[1],
+                (String) row[2],
+                (Integer) row[3],
+                (String) row[4],
+                (Double) row[5],
+                (Double) row[6],
+                (String) row[7],
+                (String) row[8],
+                (String) row[9]
+            );
+            restaurants.add(r);
+        }
+        return restaurants;
     }
 
     public void addRestaurant(Restaurant r) {
@@ -50,17 +57,17 @@ public class MichelinDB extends AccessDB {
         );
 
         int result = SQLiteQuery.execute(
-                this, query,
-                r.getName(),
-                r.getRegion(),
-                r.getCity(),
-                r.getDistinction(),
-                r.getAddress(),
-                r.getMinPrice(),
-                r.getMaxPrice(),
-                r.getType(),
-                r.getPhone(),
-                r.getWeb()
+            this, query,
+            r.getName(),
+            r.getRegion(),
+            r.getCity(),
+            r.getDistinction(),
+            r.getAddress(),
+            r.getMinPrice(),
+            r.getMaxPrice(),
+            r.getType(),
+            r.getPhone(),
+            r.getWeb()
         );
 
         System.out.printf(
