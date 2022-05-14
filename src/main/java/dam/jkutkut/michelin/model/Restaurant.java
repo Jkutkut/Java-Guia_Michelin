@@ -152,7 +152,7 @@ public class Restaurant {
 
     // Checkers
     public static boolean isValidName(String name) {
-        return name != null;
+        return name != null && !name.isEmpty();
     }
 
     public static boolean isValidRegion(String region) {

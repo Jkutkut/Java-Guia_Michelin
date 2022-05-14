@@ -69,14 +69,11 @@ public class ViewRegistration extends JFrame implements WindowListener, Michelin
     }
 
     public void setError(String msg) {
-        if (msg == null || msg.isEmpty())
-            lblError.setText("");
-        else
-            lblError.setText(msg);
+        JOptionPane.showMessageDialog(this, msg, "Error", JOptionPane.ERROR_MESSAGE);
     }
 
     public void clearError() {
-        lblError.setText(null);
+//        lblError.setText(null);
     }
 
     public void clearForm() {
@@ -103,6 +100,10 @@ public class ViewRegistration extends JFrame implements WindowListener, Michelin
 
     public JButton getBtnClear() {
         return btnClear;
+    }
+
+    public JButton getBtnSubmit() {
+        return btnSubmit;
     }
 
     // Window listener methods
