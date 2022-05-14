@@ -10,7 +10,7 @@ public class MichelinDB extends AccessDB {
     private static final String DB_LOCATION = "db/GUIA_MICHELIN.db";
 
     private static final String TABLE_NAME = "RESTAURANTES";
-    private static final String COLUMN_ID = "RESTAURANTES";
+    private static final String COLUMN_ID = "NOMBRE";
 
     public MichelinDB() {
         super(DB_LOCATION);
@@ -45,11 +45,23 @@ public class MichelinDB extends AccessDB {
 
     public void addRestaurant(Restaurant r) {
         String query = String.format(
-                "INSERT INTO %s VALUES (?, ?);",
+                "INSERT INTO %s VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
                 TABLE_NAME
         );
 
-        int result = SQLiteQuery.execute(this, query /* TODO */);
+        int result = SQLiteQuery.execute(
+                this, query,
+                r.getName(),
+                r.getRegion(),
+                r.getCity(),
+                r.getDistinction(),
+                r.getAddress(),
+                r.getMinPrice(),
+                r.getMaxPrice(),
+                r.getType(),
+                r.getPhone(),
+                r.getWeb()
+        );
 
         System.out.printf(
                 "Added restaurant %s into table %s. Result status: %d\n",
