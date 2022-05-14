@@ -29,10 +29,11 @@ public class Controller implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-//        if (e.getSource() instanceof JButton) {
-//            JButton button = (JButton) e.getSource();
-//            if (button == )
-//        }
+        if (e.getSource() instanceof JButton) {
+            JButton button = (JButton) e.getSource();
+            if (button == vRegistration.getBtnClear())
+                vRegistration.clearForm();
+        }
         if (e.getSource() instanceof JMenuItem) {
             JMenuItem menuItem = (JMenuItem) e.getSource();
             if (menuItem == vWindow.getJmiQuery())

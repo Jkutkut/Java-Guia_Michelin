@@ -64,8 +64,10 @@ public class ViewModification extends JFrame implements WindowListener, Michelin
     }
 
     // SETTERS
-    public void setControlador(Controller controlador) {
-
+    public void setController(Controller controller) {
+        btnSubmit.addActionListener(controller);
+        btnClear.addActionListener(controller);
+        btnSearch.addActionListener(controller);
     }
 
     // GETTERS
