@@ -78,6 +78,19 @@ public class ViewRegistration extends JFrame implements WindowListener, Michelin
         lblError.setText(null);
     }
 
+    public void clearForm() {
+        txtfName.setText("");
+        cmbType.setSelectedIndex(0);
+        cmbRegion.setSelectedIndex(0);
+        txtfCity.setText("");
+        txtfAddress.setText("");
+        spDistinction.setValue(Restaurant.MIN_DISTINCTION);
+        txtfMinPrice.setText("");
+        txtfMaxPrice.setText("");
+        txtfPhone.setText("");
+        txtfWeb.setText("");
+    }
+
     // GETTERS
     public JPanel getMenu() {
         return jpBody;
