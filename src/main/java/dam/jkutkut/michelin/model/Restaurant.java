@@ -125,6 +125,46 @@ public class Restaurant {
             throw new InvalidDataException(INVALID_WEB_MESSAGE);
     }
 
+    public String getName() {
+        return this.name;
+    }
+
+    public String getRegion() {
+        return this.region;
+    }
+
+    public String getCity() {
+        return this.city;
+    }
+
+    public int getDistinction() {
+        return this.distinction;
+    }
+
+    public String getAddress() {
+        return this.address;
+    }
+
+    public double getMinPrice() {
+        return this.minPrice;
+    }
+
+    public double getMaxPrice() {
+        return this.maxPrice;
+    }
+
+    public String getType() {
+        return this.type;
+    }
+
+    public String getPhone() {
+        return this.phone;
+    }
+
+    public String getWeb() {
+        return this.web;
+    }
+
     // SETTERS
     public void setName(String name) {
         if (!isValidName(name))
