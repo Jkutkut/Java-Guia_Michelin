@@ -63,8 +63,9 @@ public class ViewRegistration extends JFrame implements WindowListener, Michelin
     }
 
     // SETTERS
-    public void setControlador(Controller controlador) {
-
+    public void setController(Controller controller) {
+        btnSubmit.addActionListener(controller);
+        btnClear.addActionListener(controller);
     }
 
     public void setError(String msg) {
@@ -98,6 +99,10 @@ public class ViewRegistration extends JFrame implements WindowListener, Michelin
 
     public String getName() {
         return txtfName.getText();
+    }
+
+    public JButton getBtnClear() {
+        return btnClear;
     }
 
     // Window listener methods
