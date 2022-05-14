@@ -94,16 +94,55 @@ public class ViewRegistration extends JFrame implements WindowListener, Michelin
         return jpBody;
     }
 
-    public String getName() {
-        return txtfName.getText();
-    }
-
     public JButton getBtnClear() {
         return btnClear;
     }
 
     public JButton getBtnSubmit() {
         return btnSubmit;
+    }
+
+    // Form data
+    public String getName() {
+        return txtfName.getText();
+    }
+
+    public String getRegion() {
+        return cmbRegion.getSelectedItem().toString();
+    }
+
+    public String getRestType() {
+        return cmbType.getSelectedItem().toString();
+    }
+
+    public int getDistinction() {
+        return (int) spDistinction.getValue();
+    }
+
+    public double getMinPrice() {
+        try {
+            return Double.parseDouble(txtfMinPrice.getText());
+        }
+        catch (NumberFormatException e) {
+            return -1;
+        }
+    }
+
+    public double getMaxPrice() {
+        try {
+            return Double.parseDouble(txtfMaxPrice.getText());
+        }
+        catch (NumberFormatException e) {
+            return -1;
+        }
+    }
+
+    public String getPhone() {
+        return txtfPhone.getText();
+    }
+
+    public String getWeb() {
+        return txtfWeb.getText();
     }
 
     // Window listener methods

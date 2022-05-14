@@ -1,6 +1,7 @@
 package dam.jkutkut.michelin.controller;
 
 import dam.jkutkut.exception.InvalidDataException;
+import dam.jkutkut.michelin.model.Restaurant;
 import dam.jkutkut.michelin.view.registration.ViewRegistration;
 import dam.jkutkut.michelin.view.query.ViewQuery;
 import dam.jkutkut.michelin.view.modification.ViewModification;
@@ -31,8 +32,12 @@ public class Controller implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() instanceof JButton) {
             JButton button = (JButton) e.getSource();
+
+            // Registration
             if (button == vRegistration.getBtnClear())
                 vRegistration.clearForm();
+            else if (button == vRegistration.getBtnSubmit())
+                this.registerRestaurant();
         }
         if (e.getSource() instanceof JMenuItem) {
             JMenuItem menuItem = (JMenuItem) e.getSource();
@@ -46,11 +51,19 @@ public class Controller implements ActionListener {
     }
 
     public void registerRestaurant() {
+        Restaurant restaurant = new Restaurant();
         try {
-            String name = vRegistration.getName();
+            restaurant.setName(vRegistration.getName());
+            restaurant.setRegion(vRegistration.getRegion());
+            restaurant.setType(vRegistration.getRestType());
+            restaurant.setDistinction(vRegistration.getDistinction());
+            restaurant.setMinPrice(vRegistration.getMinPrice());
+            restaurant.setMaxPrice(vRegistration.getMaxPrice());
+            restaurant.setPhone(vRegistration.getPhone());
+            restaurant.setWeb(vRegistration.getWeb());
 
-
-            vRegistration.clearError();
+            restaurant.validate();
+            // TODO save to database
         }
         catch (InvalidDataException e) {
             vRegistration.setError(e.getMessage());
