@@ -1,5 +1,6 @@
 package dam.jkutkut.michelin.controller;
 
+import dam.jkutkut.db.MichelinDB;
 import dam.jkutkut.exception.InvalidDataException;
 import dam.jkutkut.michelin.model.Restaurant;
 import dam.jkutkut.michelin.view.registration.ViewRegistration;
@@ -13,13 +14,14 @@ import java.awt.event.ActionListener;
 
 
 public class Controller implements ActionListener {
-
+    private MichelinDB db;
     private ViewWindow vWindow;
     private ViewRegistration vRegistration;
     private ViewQuery vQuery;
     private ViewModification vModification;
 
-    public Controller(ViewWindow vWindow, ViewRegistration vRegistration, ViewQuery vQuery, ViewModification vModification) {
+    public Controller(MichelinDB db, ViewWindow vWindow, ViewRegistration vRegistration, ViewQuery vQuery, ViewModification vModification) {
+        this.db = db;
         this.vWindow = vWindow;
         this.vModification = vModification;
         this.vRegistration = vRegistration;
@@ -65,7 +67,8 @@ public class Controller implements ActionListener {
             restaurant.setWeb(vRegistration.getWeb());
 
             restaurant.validate();
-            // TODO save to database
+
+            db.addRestaurant(restaurant);
         }
         catch (InvalidDataException e) {
             vRegistration.setError(e.getMessage());

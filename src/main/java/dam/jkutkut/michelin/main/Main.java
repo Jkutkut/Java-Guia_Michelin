@@ -30,10 +30,11 @@ public class Main {
 
 
                 Controller controller = new Controller(
+                    db,
                     viewWindow,
-                        viewRegistration,
+                    viewRegistration,
                     viewQuery,
-                        viewModification
+                    viewModification
                 );
                 viewWindow.setController(controller);
                 viewModification.setController(controller);
