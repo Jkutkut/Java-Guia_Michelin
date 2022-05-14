@@ -57,6 +57,7 @@ public class Restaurant {
     private static final String INVALID_ADDRESS_MESSAGE = "Invalid address";
     private static final String INVALID_MIN_PRICE_MESSAGE = "Invalid min price";
     private static final String INVALID_MAX_PRICE_MESSAGE = "Invalid max price";
+    private static final String INVALID_PRICE_RANGE_MESSAGE = "Minimum price must be less than maximum price";
     private static final String INVALID_PHONE_MESSAGE = "Invalid phone";
     private static final String INVALID_WEB_MESSAGE = "Invalid web";
 
@@ -111,8 +112,11 @@ public class Restaurant {
             throw new InvalidDataException(INVALID_ADDRESS_MESSAGE);
         if (!isValidMinPrice(this.minPrice, this.maxPrice))
             throw new InvalidDataException(INVALID_MIN_PRICE_MESSAGE);
-        if (!isValidMaxPrice(this.maxPrice, this.minPrice))
+        if (!isValidMaxPrice(this.maxPrice, this.minPrice)) {
+            if (this.maxPrice != NULL_PRICE)
+                throw new InvalidDataException(INVALID_PRICE_RANGE_MESSAGE);
             throw new InvalidDataException(INVALID_MAX_PRICE_MESSAGE);
+        }
         if (!isValidType(this.type))
             throw new InvalidDataException(INVALID_TYPE_MESSAGE);
         if (!isValidPhone(this.phone))
@@ -153,14 +157,20 @@ public class Restaurant {
     }
 
     public void setMinPrice(double minPrice) {
-        if (!isValidMinPrice(minPrice, this.maxPrice))
+        if (!isValidMinPrice(minPrice, this.maxPrice)) {
+            if (this.maxPrice != NULL_PRICE)
+                throw new InvalidDataException(INVALID_PRICE_RANGE_MESSAGE);
             throw new InvalidDataException(INVALID_MIN_PRICE_MESSAGE);
+        }
         this.minPrice = minPrice;
     }
 
     public void setMaxPrice(double maxPrice) {
-        if (!isValidMaxPrice(maxPrice, this.minPrice))
+        if (!isValidMaxPrice(maxPrice, this.minPrice)) {
+            if (this.minPrice != NULL_PRICE)
+                throw new InvalidDataException(INVALID_PRICE_RANGE_MESSAGE);
             throw new InvalidDataException(INVALID_MAX_PRICE_MESSAGE);
+        }
         this.maxPrice = maxPrice;
     }
 
