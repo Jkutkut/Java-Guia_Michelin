@@ -128,13 +128,13 @@ public class Restaurant {
 
     public void setMinPrice(double minPrice) {
         if (!isValidMinPrice(minPrice, this.maxPrice))
-            throw new InvalidDataException("Invalid min price");
+            throw new InvalidDataException("Invalid minimum price");
         this.minPrice = minPrice;
     }
 
     public void setMaxPrice(double maxPrice) {
         if (!isValidMaxPrice(maxPrice, this.minPrice))
-            throw new InvalidDataException("Invalid max price");
+            throw new InvalidDataException("Invalid maximum price");
         this.maxPrice = maxPrice;
     }
 
@@ -178,11 +178,15 @@ public class Restaurant {
     }
 
     public static boolean isValidMinPrice(double minPrice, double maxPrice) {
-        return minPrice > 0 && (maxPrice != NULL_PRICE && minPrice <= maxPrice);
+        if (maxPrice != NULL_PRICE)
+            return minPrice <= maxPrice && minPrice > 0;
+        return minPrice > 0;
     }
 
     public static boolean isValidMaxPrice(double maxPrice, double minPrice) {
-        return maxPrice > 0 && (minPrice != NULL_PRICE && maxPrice >= minPrice);
+        if (minPrice != NULL_PRICE)
+            return maxPrice >= minPrice && maxPrice > 0;
+        return maxPrice > 0;
     }
 
     public static boolean isValidPhone(String phone) {
