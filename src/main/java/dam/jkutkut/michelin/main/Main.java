@@ -1,6 +1,7 @@
 package dam.jkutkut.michelin.main;
 
 import com.formdev.flatlaf.FlatDarculaLaf;
+import dam.jkutkut.db.MichelinDB;
 import dam.jkutkut.michelin.controller.Controller;
 import dam.jkutkut.michelin.view.registration.ViewRegistration;
 import dam.jkutkut.michelin.view.query.ViewQuery;
@@ -24,6 +25,8 @@ public class Main {
                 ViewRegistration viewRegistration = new ViewRegistration();
                 ViewModification viewModification = new ViewModification();
                 ViewQuery viewQuery = new ViewQuery();
+
+                MichelinDB db = new MichelinDB();
 
 
                 Controller controller = new Controller(
