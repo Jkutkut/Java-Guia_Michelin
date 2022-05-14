@@ -55,10 +55,12 @@ public class Controller implements ActionListener {
         try {
             restaurant.setName(vRegistration.getName());
             restaurant.setRegion(vRegistration.getRegion());
-            restaurant.setType(vRegistration.getRestType());
+            restaurant.setCity(vRegistration.getCity());
             restaurant.setDistinction(vRegistration.getDistinction());
+            restaurant.setAddress(vRegistration.getAddress());
             restaurant.setMinPrice(vRegistration.getMinPrice());
             restaurant.setMaxPrice(vRegistration.getMaxPrice());
+            restaurant.setType(vRegistration.getRestType());
             restaurant.setPhone(vRegistration.getPhone());
             restaurant.setWeb(vRegistration.getWeb());
 

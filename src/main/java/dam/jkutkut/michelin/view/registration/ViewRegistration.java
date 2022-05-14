@@ -111,12 +111,16 @@ public class ViewRegistration extends JFrame implements WindowListener, Michelin
         return cmbRegion.getSelectedItem().toString();
     }
 
-    public String getRestType() {
-        return cmbType.getSelectedItem().toString();
+    public String getCity() {
+        return txtfCity.getText();
     }
 
     public int getDistinction() {
         return (int) spDistinction.getValue();
+    }
+
+    public String getAddress() {
+        return txtfAddress.getText();
     }
 
     public double getMinPrice() {
@@ -135,6 +139,10 @@ public class ViewRegistration extends JFrame implements WindowListener, Michelin
         catch (NumberFormatException e) {
             return -1;
         }
+    }
+
+    public String getRestType() {
+        return cmbType.getSelectedItem().toString();
     }
 
     public String getPhone() {
