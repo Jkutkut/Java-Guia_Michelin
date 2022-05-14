@@ -67,7 +67,10 @@ public class ViewWindow extends JFrame implements WindowListener {
 
     @Override
     public void windowClosing(WindowEvent e) {
-
+        int result = JOptionPane.showConfirmDialog(this, "Are you sure you want to exit?", "Exit", JOptionPane.YES_NO_OPTION);
+        if (result == JOptionPane.YES_OPTION) {
+            System.exit(0);
+        }
     }
 
     @Override
