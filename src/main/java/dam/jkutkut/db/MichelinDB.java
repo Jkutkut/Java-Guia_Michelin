@@ -16,8 +16,8 @@ public class MichelinDB extends AccessDB {
         super(DB_LOCATION);
     }
 
-    public ArrayList<Restaurant> getRestaurants() {
-        // SELECT * FROM TABLE WHERE COLUMN_ID = '%s'
+    public ArrayList<Restaurant> getRestaurants() throws SQLiteQueryException, InvalidDataException {
+        // SELECT * FROM TABLE
         String query = String.format(
                 "SELECT * FROM %s;",
                 TABLE_NAME,
@@ -50,7 +50,7 @@ public class MichelinDB extends AccessDB {
         return restaurants;
     }
 
-    public void addRestaurant(Restaurant r) {
+    public void addRestaurant(Restaurant r) throws SQLiteQueryException, InvalidDataException {
         String query = String.format(
                 "INSERT INTO %s VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
                 TABLE_NAME
