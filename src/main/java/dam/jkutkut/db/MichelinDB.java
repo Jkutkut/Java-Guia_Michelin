@@ -12,6 +12,19 @@ public class MichelinDB extends AccessDB {
     private static final String TABLE_NAME = "RESTAURANTES";
     private static final String COLUMN_ID = "NOMBRE";
 
+    public static final String[] ATRIBUTES = {
+        COLUMN_ID,
+        "REGION",
+        "CIUDAD",
+        "DISTINCION",
+        "DIRECCION",
+        "PRECIO_MIN",
+        "PRECIO_MAX",
+        "COCINA",
+        "TELEFONO",
+        "WEB"
+    };
+
     public MichelinDB() {
         super(DB_LOCATION);
     }

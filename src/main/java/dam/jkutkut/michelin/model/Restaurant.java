@@ -165,6 +165,21 @@ public class Restaurant {
         return this.web;
     }
 
+    public Object[] toArray() {
+        return new Object[] {
+            this.getName(),
+            this.getRegion(),
+            this.getCity(),
+            this.getDistinction(),
+            this.getAddress(),
+            this.getMinPrice(),
+            this.getMaxPrice(),
+            this.getType(),
+            this.getPhone(),
+            this.getWeb()
+        };
+    }
+
     // SETTERS
     public void setName(String name) {
         if (!isValidName(name))

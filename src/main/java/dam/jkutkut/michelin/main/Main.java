@@ -39,7 +39,7 @@ public class Main {
                 viewWindow.setController(controller);
                 viewModification.setController(controller);
                 viewRegistration.setController(controller);
-//                viewQuery.setController(controller);
+                viewQuery.setController(controller);
                 viewWindow.setVisible(true);
             }
         });
