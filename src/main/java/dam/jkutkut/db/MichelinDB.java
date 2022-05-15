@@ -39,7 +39,7 @@ public class MichelinDB extends AccessDB {
 
         ArrayList<Object[]> data = SQLiteQuery.get(
                 this,
-                10,
+                11,
                 query
         );
 
@@ -47,16 +47,16 @@ public class MichelinDB extends AccessDB {
         Restaurant r;
         for (Object[] row : data) {
             r = new Restaurant(
-                (String) row[0],
                 (String) row[1],
                 (String) row[2],
-                (Integer) row[3],
-                (String) row[4],
-                (Double) row[5],
+                (String) row[3],
+                (Integer) row[4],
+                (String) row[5],
                 (Double) row[6],
-                (String) row[7],
+                (Double) row[7],
                 (String) row[8],
-                (String) row[9]
+                (String) row[9],
+                (String) row[10]
             );
             restaurants.add(r);
         }

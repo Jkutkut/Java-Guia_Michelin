@@ -4,15 +4,15 @@ import dam.jkutkut.exception.InvalidDataException;
 
 public class Restaurant {
     public static final String[] REGIONS = {
-        "Andalucia",
-        "Aragon",
+        "Andalucía",
+        "Aragón",
         "Asturias",
-        "Baleares",
+        "Islas Baleares",
         "Canarias",
         "Cantabria",
-        "Castilla-La-Mancha",
-        "Castilla-y-Leon",
-        "Cataluna",
+        "Castilla - La Mancha",
+        "Castilla-y-León",
+        "Cataluña",
         "Ceuta",
         "Ciudad-Real",
         "Comunidad-Valenciana",
@@ -22,16 +22,16 @@ public class Restaurant {
         "Madrid",
         "Murcia",
         "Navarra",
-        "Pais-Vasco",
+        "País-Vasco",
         "Valencia"
     };
 
     public static final String[] TYPES = {
-        "Creative",
-        "Modern",
-        "Traditional",
+        "Creativa",
+        "Moderna",
+        "Tradicional",
         "Regional",
-        "Fusion"
+        "Fusión"
     };
 
     public static final String[] DISTINCTIONS = {
@@ -46,13 +46,13 @@ public class Restaurant {
 
     private static final double NULL_PRICE = -1;
 
-    private static final String PHONE_REGEX = "^(\\+\\d{2,3})? ?\\d{3} ?\\d{3} ?\\d{3}$";
+    private static final String PHONE_REGEX = "^(\\+\\d{2,3})? ?\\d{3} ?(\\d{3} ?\\d{3}|\\d{2} ?\\d{2} ?\\d{2})$";
     private static final String WEB_REGEX = "(http[s]?:\\/\\/)?(ww[w2]\\.)?(([a-zA-Z0-9\\-]+\\.)+([a-zA-Z\\-])+)";
 
     private static final String INVALID_NAME_MESSAGE = "Invalid name";
     private static final String INVALID_REGION_MESSAGE = "Invalid region";
     private static final String INVALID_CITY_MESSAGE = "Invalid city";
-    private static final String INVALID_TYPE_MESSAGE = "Invalid type";
+    private static final String INVALID_TYPE_MESSAGE = "Invalid kitchen type";
     private static final String INVALID_DISTINCTION_MESSAGE = "Invalid distinction: value must be in range [" + MIN_DISTINCTION + ", " + MAX_DISTINCTION + "]";
     private static final String INVALID_ADDRESS_MESSAGE = "Invalid address";
     private static final String INVALID_MIN_PRICE_MESSAGE = "Invalid min price";
@@ -91,6 +91,7 @@ public class Restaurant {
         this.setCity(city);
         this.setDistinction(distinction);
         this.setAddress(address);
+        this.maxPrice = NULL_PRICE;
         this.setMinPrice(minPrice);
         this.setMaxPrice(maxPrice);
         this.setType(type);
@@ -188,6 +189,7 @@ public class Restaurant {
     }
 
     public void setRegion(String region) {
+        System.out.println(region);
         if (!isValidRegion(region))
             throw new InvalidDataException(INVALID_REGION_MESSAGE);
         this.region = region;
