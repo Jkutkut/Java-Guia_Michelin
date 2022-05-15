@@ -23,7 +23,8 @@ public class Restaurant {
         "Murcia",
         "Navarra",
         "País Vasco",
-        "Valencia"
+        "Valencia",
+        "Todas"
     };
 
     public static final String[] TYPES = {
@@ -257,8 +258,8 @@ public class Restaurant {
     public static boolean isValidRegion(String region) {
         if (region == null || region.isBlank())
             return false;
-        for (String r : REGIONS)
-            if (r.equals(region))
+        for (int i = 0; i < REGIONS.length - 1; i++)
+            if (REGIONS[i].equals(region))
                 return true;
         return false;
     }

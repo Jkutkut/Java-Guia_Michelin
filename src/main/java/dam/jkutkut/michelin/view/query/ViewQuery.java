@@ -29,7 +29,6 @@ public class ViewQuery extends JFrame implements WindowListener, MichelinMenu {
     private JScrollPane jspTable;
     private JTable tableRestaurants;
     private JButton btnDelete;
-    private JLabel lblError;
 
     public ViewQuery() {
         setTitle(TITLE);
@@ -45,6 +44,7 @@ public class ViewQuery extends JFrame implements WindowListener, MichelinMenu {
 
     private void initComponents() {
         cmbRegion.setModel(new DefaultComboBoxModel(Restaurant.REGIONS));
+        cmbRegion.setSelectedIndex(Restaurant.REGIONS.length - 1);
         cmbDistinction.setModel(new DefaultComboBoxModel(Restaurant.DISTINCTIONS));
         cmbDistinction.setSelectedIndex(Restaurant.DISTINCTIONS.length - 1);
 
@@ -90,19 +90,30 @@ public class ViewQuery extends JFrame implements WindowListener, MichelinMenu {
     public void updateTable(ArrayList<Restaurant> restaurants) {
         dtm.setRowCount(0); // clear table
         for (Restaurant restaurant : restaurants) {
-            dtm.addRow(restaurant.toArray());
+            if (wantedRegion(restaurant.getRegion()) && wantedDistinction(restaurant.getDistinction()))
+                dtm.addRow(restaurant.toArray());
         }
+        if (dtm.getRowCount() == 0)
+            JOptionPane.showMessageDialog(this, "No results found", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+
+    private boolean wantedDistinction(int distinction) {
+        if (cmbDistinction.getSelectedIndex() == Restaurant.DISTINCTIONS.length - 1)
+            return true;
+        return distinction == cmbDistinction.getSelectedIndex() + 1;
+    }
+
+    private boolean wantedRegion(String region) {
+        if (cmbRegion.getSelectedIndex() == Restaurant.REGIONS.length - 1)
+            return true;
+        return region.equals(cmbRegion.getSelectedItem());
     }
 
     public void setError(String msg) {
-        if (msg == null || msg.isEmpty())
-            lblError.setText("");
-        else
-            lblError.setText(msg);
+        JOptionPane.showMessageDialog(this, msg, "Error", JOptionPane.ERROR_MESSAGE);
     }
 
     public void clearError() {
-        lblError.setText(null);
     }
 
     // GETTERS
