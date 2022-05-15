@@ -26,8 +26,6 @@ public class Controller implements ActionListener {
         this.vModification = vModification;
         this.vRegistration = vRegistration;
         this.vQuery = vQuery;
-
-        vWindow.openWindow(vRegistration);
     }
 
     @Override
@@ -40,6 +38,18 @@ public class Controller implements ActionListener {
                 vRegistration.clearForm();
             else if (button == vRegistration.getBtnSubmit())
                 this.registerRestaurant();
+
+            // Query
+            else if (button == vQuery.getBtnSearch()) {
+                try {
+                    vQuery.updateTable(db.getRestaurants());
+                }
+                catch (Exception error) {
+                    vQuery.setError(error.getMessage());
+                    System.out.println(error.getMessage());
+                    System.out.println(error.getStackTrace());
+                }
+            }
         }
         if (e.getSource() instanceof JMenuItem) {
             JMenuItem menuItem = (JMenuItem) e.getSource();

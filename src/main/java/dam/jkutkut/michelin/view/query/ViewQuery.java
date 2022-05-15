@@ -94,11 +94,6 @@ public class ViewQuery extends JFrame implements WindowListener, MichelinMenu {
         }
     }
 
-    // GETTERS
-    public JPanel getMenu() {
-        return jpBody;
-    }
-
     public void setError(String msg) {
         if (msg == null || msg.isEmpty())
             lblError.setText("");
@@ -108,6 +103,19 @@ public class ViewQuery extends JFrame implements WindowListener, MichelinMenu {
 
     public void clearError() {
         lblError.setText(null);
+    }
+
+    // GETTERS
+    public JPanel getMenu() {
+        return jpBody;
+    }
+
+    public JButton getBtnSearch() {
+        return btnSearch;
+    }
+
+    public JButton getBtnDelete() {
+        return btnDelete;
     }
 
     // Window listener methods

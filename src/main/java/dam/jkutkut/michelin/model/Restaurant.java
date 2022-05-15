@@ -11,18 +11,18 @@ public class Restaurant {
         "Canarias",
         "Cantabria",
         "Castilla - La Mancha",
-        "Castilla-y-León",
+        "Castilla y León",
         "Cataluña",
         "Ceuta",
-        "Ciudad-Real",
-        "Comunidad-Valenciana",
+        "Ciudad Real",
+        "Comunidad Valenciana",
         "Extremadura",
         "Galicia",
-        "La-Rioja",
+        "La Rioja",
         "Madrid",
         "Murcia",
         "Navarra",
-        "País-Vasco",
+        "País Vasco",
         "Valencia"
     };
 

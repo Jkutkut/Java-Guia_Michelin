@@ -46,18 +46,19 @@ public class MichelinDB extends AccessDB {
         ArrayList<Restaurant> restaurants = new ArrayList<>();
         Restaurant r;
         for (Object[] row : data) {
-            r = new Restaurant(
-                (String) row[1],
-                (String) row[2],
-                (String) row[3],
-                (Integer) row[4],
-                (String) row[5],
-                (Double) row[6],
-                (Double) row[7],
-                (String) row[8],
-                (String) row[9],
-                (String) row[10]
-            );
+            r = new Restaurant();
+            r.setName((String) row[1]);
+            r.setRegion((String) row[2]);
+            r.setCity((String) row[3]);
+            r.setDistinction((Integer) row[4]);
+            r.setAddress((String) row[5]);
+            if (row[6] != null)
+                r.setMinPrice((Double) row[6]);
+            if (row[7] != null)
+                r.setMaxPrice((Double) row[7]);
+            r.setType((String) row[8]);
+            r.setPhone((String) row[9]);
+            r.setWeb((String) row[10]);
             restaurants.add(r);
         }
         return restaurants;
