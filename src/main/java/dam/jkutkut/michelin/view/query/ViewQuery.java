@@ -6,6 +6,7 @@ import dam.jkutkut.michelin.model.Restaurant;
 import dam.jkutkut.michelin.view.MichelinMenu;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
@@ -58,27 +59,10 @@ public class ViewQuery extends JFrame implements WindowListener, MichelinMenu {
                 return false;
             }
         };
-
-        for (String atribute : MichelinDB.ATRIBUTES) {
-            dtm.addColumn(atribute);
-        }
-
         tableRestaurants.setModel(dtm);
-        int[] tableWidths = {
-            125,
-            125,
-            100,
-            80,
-            125,
-            80,
-            80,
-            80,
-            80,
-            125
-        };
-        for (int i = 0; i < MichelinDB.ATRIBUTES.length; i++) {
-            tableRestaurants.getColumn(MichelinDB.ATRIBUTES[i]).setPreferredWidth(tableWidths[i]);
-        }
+
+        for (int i = 0; i < MichelinDB.TABLE_ATRIBUTES.length; i++)
+            dtm.addColumn(MichelinDB.TABLE_ATRIBUTES[i]);
     }
 
     // SETTERS

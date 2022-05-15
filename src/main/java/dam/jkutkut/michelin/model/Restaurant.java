@@ -167,15 +167,27 @@ public class Restaurant {
         return this.web;
     }
 
-    public Object[] toArray() {
-        return new Object[] {
+    public String[] toArray() {
+        String distin = "";
+        for (int i = 0; i < this.distinction; i++)
+            distin += "*";
+        String price;
+        if (this.maxPrice == NULL_PRICE) {
+            if (this.minPrice == NULL_PRICE)
+                price = "??";
+            else
+                price = String.format("%.2f€", this.minPrice);
+        }
+        else
+            price = String.format("%.2f€ - %.2f€", this.minPrice, this.maxPrice);
+
+        return new String[] {
             this.getName(),
             this.getRegion(),
             this.getCity(),
-            this.getDistinction(),
+            distin,
             this.getAddress(),
-            this.getMinPrice(),
-            this.getMaxPrice(),
+            price,
             this.getType(),
             this.getPhone(),
             this.getWeb()

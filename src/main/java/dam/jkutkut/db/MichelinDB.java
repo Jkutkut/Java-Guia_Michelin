@@ -25,6 +25,18 @@ public class MichelinDB extends AccessDB {
         "WEB"
     };
 
+    public static final String[] TABLE_ATRIBUTES = {
+        "Nombre",
+        "Región",
+        "Ciudad",
+        "Distinción",
+        "Dirección",
+        "Precio",
+        "Cocina",
+        "Teléfono",
+        "Web"
+    };
+
     public MichelinDB() {
         super(DB_LOCATION);
     }
