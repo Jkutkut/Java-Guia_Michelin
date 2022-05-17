@@ -44,22 +44,22 @@ public class Controller implements ActionListener {
 
             // Query
             else if (button == vQuery.getBtnSearch()) {
+                updateTable();
+            }
+            else if (button == vQuery.getBtnDelete()) {
+                if (vQuery.restaurantSelected() == -1) {
+                    vQuery.setError("No restaurant selected");
+                    return;
+                }
                 try {
-                    restaurants = db.getRestaurants();
-                    vQuery.updateTable(restaurants);
+                    db.removeRestaurant(restaurants.get(vQuery.restaurantSelected()));
+                    updateTable();
                 }
                 catch (Exception error) {
                     vQuery.setError(error.getMessage());
                     System.out.println(error.getMessage());
                     System.out.println(error.getStackTrace());
                 }
-            }
-            else if (button == vQuery.getBtnDelete()) {
-                if (vQuery.restaurantSelected() == -1)
-                    vQuery.setError("No restaurant selected");
-//                else
-//                    db.removeRestaurant(restaurants.get(vQuery.restaurantSelected()));
-                // TODO add test restaurant to test delete
             }
         }
         if (e.getSource() instanceof JMenuItem) {
@@ -70,6 +70,18 @@ public class Controller implements ActionListener {
                 vWindow.openWindow(vModification);
             else if (menuItem == vWindow.getJmiRegistration())
                 vWindow.openWindow(vRegistration);
+        }
+    }
+
+    private void updateTable() {
+        try {
+            restaurants = db.getRestaurants();
+            vQuery.updateTable(restaurants);
+        }
+        catch (Exception error) {
+            vQuery.setError(error.getMessage());
+            System.out.println(error.getMessage());
+            System.out.println(error.getStackTrace());
         }
     }
 
