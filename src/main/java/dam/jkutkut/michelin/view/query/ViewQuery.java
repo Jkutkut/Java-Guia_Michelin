@@ -98,9 +98,6 @@ public class ViewQuery extends JFrame implements WindowListener, MichelinMenu {
         JOptionPane.showMessageDialog(this, msg, "Error", JOptionPane.ERROR_MESSAGE);
     }
 
-    public void clearError() {
-    }
-
     // GETTERS
     public JPanel getMenu() {
         return jpBody;

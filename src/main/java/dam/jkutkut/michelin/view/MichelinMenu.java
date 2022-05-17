@@ -6,6 +6,4 @@ public interface MichelinMenu {
     public JPanel getMenu();
 
     public void setError(String msg);
-
-    public void clearError();
 }

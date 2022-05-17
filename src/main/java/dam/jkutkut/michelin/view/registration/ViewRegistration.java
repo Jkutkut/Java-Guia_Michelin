@@ -37,7 +37,6 @@ public class ViewRegistration extends JFrame implements WindowListener, Michelin
     private JLabel lblPhone;
     private JLabel lblWeb;
     private JComboBox cmbType;
-    private JLabel lblError;
 
     public ViewRegistration() {
         setTitle(TITLE);
@@ -72,10 +71,6 @@ public class ViewRegistration extends JFrame implements WindowListener, Michelin
 
     public void setError(String msg) {
         JOptionPane.showMessageDialog(this, msg, "Error", JOptionPane.ERROR_MESSAGE);
-    }
-
-    public void clearError() {
-//        lblError.setText(null);
     }
 
     public void clearForm() {
