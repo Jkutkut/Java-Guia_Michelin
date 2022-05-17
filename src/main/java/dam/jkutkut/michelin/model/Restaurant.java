@@ -92,6 +92,7 @@ public class Restaurant {
         this.setCity(city);
         this.setDistinction(distinction);
         this.setAddress(address);
+        this.minPrice = NULL_PRICE;
         this.maxPrice = NULL_PRICE;
         this.setMinPrice(minPrice);
         this.setMaxPrice(maxPrice);
@@ -114,11 +115,8 @@ public class Restaurant {
             throw new InvalidDataException(INVALID_ADDRESS_MESSAGE);
         if (!isValidMinPrice(this.minPrice, this.maxPrice))
             throw new InvalidDataException(INVALID_MIN_PRICE_MESSAGE);
-        if (!isValidMaxPrice(this.maxPrice, this.minPrice)) {
-            if (this.maxPrice != NULL_PRICE)
-                throw new InvalidDataException(INVALID_PRICE_RANGE_MESSAGE);
-            throw new InvalidDataException(INVALID_MAX_PRICE_MESSAGE);
-        }
+        if (!isValidMaxPrice(this.maxPrice, this.minPrice))
+            throw new InvalidDataException(INVALID_PRICE_RANGE_MESSAGE);
         if (!isValidType(this.type))
             throw new InvalidDataException(INVALID_TYPE_MESSAGE);
         if (!isValidPhone(this.phone))
@@ -294,9 +292,9 @@ public class Restaurant {
     }
 
     public static boolean isValidMaxPrice(double maxPrice, double minPrice) {
-        if (minPrice != NULL_PRICE)
-            return maxPrice >= minPrice && maxPrice > 0;
-        return maxPrice > 0;
+        if (maxPrice != NULL_PRICE)
+            return maxPrice >= minPrice;
+        return true;
     }
 
     public static boolean isValidType(String type) {
