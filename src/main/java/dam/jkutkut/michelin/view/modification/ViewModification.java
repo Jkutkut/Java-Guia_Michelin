@@ -9,7 +9,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.Arrays;
 
-public class ViewModification extends JFrame implements WindowListener, MichelinMenu {
+public class ViewModification extends JFrame implements MichelinMenu {
     private static final String TITLE = "";
     public static final int SEARCH_MODE = 0;
     public static final int MODIFY_MODE = 1;
@@ -44,12 +44,9 @@ public class ViewModification extends JFrame implements WindowListener, Michelin
 
     public ViewModification() {
         setTitle(TITLE);
-        // setContentPane(jpBody);
         pack();
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         setLocationRelativeTo(null);
-        // setSize(500, 200);
-        addWindowListener(this);
 
         initComponents();
     }
@@ -136,41 +133,5 @@ public class ViewModification extends JFrame implements WindowListener, Michelin
 
     public String getName() {
         return txtfName.getText();
-    }
-
-    // Window listener methods
-    @Override
-    public void windowOpened(WindowEvent e) {
-
-    }
-
-    @Override
-    public void windowClosing(WindowEvent e) {
-
-    }
-
-    @Override
-    public void windowClosed(WindowEvent e) {
-
-    }
-
-    @Override
-    public void windowIconified(WindowEvent e) {
-
-    }
-
-    @Override
-    public void windowDeiconified(WindowEvent e) {
-
-    }
-
-    @Override
-    public void windowActivated(WindowEvent e) {
-
-    }
-
-    @Override
-    public void windowDeactivated(WindowEvent e) {
-
     }
 }

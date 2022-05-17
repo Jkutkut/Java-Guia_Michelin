@@ -9,7 +9,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.Arrays;
 
-public class ViewRegistration extends JFrame implements WindowListener, MichelinMenu {
+public class ViewRegistration extends JFrame implements MichelinMenu {
     private static final String TITLE = "";
     private JPanel jpBody;
     private JLabel lblTitle;
@@ -40,12 +40,9 @@ public class ViewRegistration extends JFrame implements WindowListener, Michelin
 
     public ViewRegistration() {
         setTitle(TITLE);
-        // setContentPane(jpBody);
         pack();
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         setLocationRelativeTo(null);
-        // setSize(500, 200);
-        addWindowListener(this);
 
         initComponents();
     }
@@ -152,41 +149,5 @@ public class ViewRegistration extends JFrame implements WindowListener, Michelin
 
     public String getWeb() {
         return txtfWeb.getText();
-    }
-
-    // Window listener methods
-    @Override
-    public void windowOpened(WindowEvent e) {
-
-    }
-
-    @Override
-    public void windowClosing(WindowEvent e) {
-
-    }
-
-    @Override
-    public void windowClosed(WindowEvent e) {
-
-    }
-
-    @Override
-    public void windowIconified(WindowEvent e) {
-
-    }
-
-    @Override
-    public void windowDeiconified(WindowEvent e) {
-
-    }
-
-    @Override
-    public void windowActivated(WindowEvent e) {
-
-    }
-
-    @Override
-    public void windowDeactivated(WindowEvent e) {
-
     }
 }

@@ -12,7 +12,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.ArrayList;
 
-public class ViewQuery extends JFrame implements WindowListener, MichelinMenu {
+public class ViewQuery extends JFrame implements MichelinMenu {
     private static final String TITLE = "";
     private DefaultTableModel dtm;
 
@@ -38,7 +38,6 @@ public class ViewQuery extends JFrame implements WindowListener, MichelinMenu {
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         setLocationRelativeTo(null);
         setSize(500, 200);
-        addWindowListener(this);
 
         initComponents();
     }
@@ -113,41 +112,5 @@ public class ViewQuery extends JFrame implements WindowListener, MichelinMenu {
 
     public int restaurantSelected() {
         return tableRestaurants.getSelectedRow();
-    }
-
-    // Window listener methods
-    @Override
-    public void windowOpened(WindowEvent e) {
-
-    }
-
-    @Override
-    public void windowClosing(WindowEvent e) {
-
-    }
-
-    @Override
-    public void windowClosed(WindowEvent e) {
-
-    }
-
-    @Override
-    public void windowIconified(WindowEvent e) {
-
-    }
-
-    @Override
-    public void windowDeiconified(WindowEvent e) {
-
-    }
-
-    @Override
-    public void windowActivated(WindowEvent e) {
-
-    }
-
-    @Override
-    public void windowDeactivated(WindowEvent e) {
-
     }
 }
