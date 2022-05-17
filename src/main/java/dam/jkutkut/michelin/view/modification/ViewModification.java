@@ -11,6 +11,9 @@ import java.util.Arrays;
 
 public class ViewModification extends JFrame implements WindowListener, MichelinMenu {
     private static final String TITLE = "";
+    public static final int SEARCH_MODE = 0;
+    public static final int MODIFY_MODE = 1;
+
     private JPanel jpBody;
     private JLabel lblTitle;
     private JPanel jpForm;
@@ -62,6 +65,7 @@ public class ViewModification extends JFrame implements WindowListener, Michelin
             Restaurant.MAX_DISTINCTION,
             1
         ));
+        setMode(SEARCH_MODE);
     }
 
     // SETTERS
@@ -70,6 +74,23 @@ public class ViewModification extends JFrame implements WindowListener, Michelin
         btnClear.addActionListener(controller);
         btnSearch.addActionListener(controller);
     }
+
+    public void setMode(int mode) {
+        boolean enableForm = mode == MODIFY_MODE;
+        cmbRegion.setEnabled(enableForm);
+        txtfAddress.setEnabled(enableForm);
+        txtfCity.setEnabled(enableForm);
+        txtfAddress.setEnabled(enableForm);
+        cmbType.setEnabled(enableForm);
+        spDistinction.setEnabled(enableForm);
+        txtfMinPrice.setEnabled(enableForm);
+        txtfMaxPrice.setEnabled(enableForm);
+        txtfPhone.setEnabled(enableForm);
+        txtfWeb.setEnabled(enableForm);
+        btnSubmit.setEnabled(enableForm);
+        btnClear.setEnabled(enableForm);
+    }
+
 
     // GETTERS
     public JPanel getMenu() {
