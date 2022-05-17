@@ -7,6 +7,7 @@ import dam.jkutkut.michelin.view.MichelinMenu;
 import javax.swing.*;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.util.Arrays;
 
 public class ViewRegistration extends JFrame implements WindowListener, MichelinMenu {
     private static final String TITLE = "";
@@ -52,7 +53,8 @@ public class ViewRegistration extends JFrame implements WindowListener, Michelin
 
     private void initComponents() {
         cmbType.setModel(new DefaultComboBoxModel(Restaurant.TYPES));
-        cmbRegion.setModel(new DefaultComboBoxModel(Restaurant.REGIONS));
+        cmbRegion.setModel(new DefaultComboBoxModel(Arrays.stream(Restaurant.REGIONS).limit(Restaurant.REGIONS.length - 1).toArray()));
+        cmbRegion.setMaximumRowCount(8);
 
         spDistinction.setModel(new SpinnerNumberModel(
             Restaurant.MIN_DISTINCTION,
