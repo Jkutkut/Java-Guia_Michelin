@@ -92,7 +92,7 @@ public class MichelinDB extends AccessDB {
             r.getDistinction(),
             r.getAddress(),
             r.getMinPrice(),
-            r.getMaxPrice(),
+            (r.getMaxPrice() == Restaurant.NULL_PRICE) ? null : r.getMaxPrice(),
             r.getType(),
             r.getPhone(),
             r.getWeb()

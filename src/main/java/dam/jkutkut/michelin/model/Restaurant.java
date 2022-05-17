@@ -45,7 +45,7 @@ public class Restaurant {
     public static final int MIN_DISTINCTION = 1;
     public static final int MAX_DISTINCTION = 3;
 
-    private static final double NULL_PRICE = -1;
+    public static final double NULL_PRICE = -1;
 
     private static final String PHONE_REGEX = "^(\\+\\d{2,3})? ?\\d{3} ?(\\d{3} ?\\d{3}|\\d{2} ?\\d{2} ?\\d{2})$";
     private static final String WEB_REGEX = "(http[s]?:\\/\\/)?(ww[w2]\\.)?(([a-zA-Z0-9\\-]+\\.)+([a-zA-Z\\-])+)";
