@@ -95,6 +95,18 @@ public class ViewModification extends JFrame implements WindowListener, Michelin
         btnClear.setEnabled(enableForm);
     }
 
+    public void clearForm() {
+        txtfName.setText("");
+        cmbRegion.setSelectedIndex(0);
+        txtfCity.setText("");
+        txtfAddress.setText("");
+        cmbType.setSelectedIndex(0);
+        spDistinction.setValue(Restaurant.MIN_DISTINCTION);
+        txtfMinPrice.setText("");
+        txtfMaxPrice.setText("");
+        txtfPhone.setText("");
+        txtfWeb.setText("");
+    }
 
     public void setError(String msg) {
         JOptionPane.showMessageDialog(this, msg, "Error", JOptionPane.ERROR_MESSAGE);

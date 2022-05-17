@@ -82,6 +82,13 @@ public class Controller implements ActionListener {
                     vModification.setInfo(e2.getMessage());
                 }
             }
+            else if (button == vModification.getBtnSubmit()) {
+                // TODO
+            }
+            else if (button == vModification.getBtnClear()) {
+                vModification.clearForm();
+                vModification.setMode(vModification.SEARCH_MODE);
+            }
         }
         if (e.getSource() instanceof JMenuItem) {
             JMenuItem menuItem = (JMenuItem) e.getSource();
