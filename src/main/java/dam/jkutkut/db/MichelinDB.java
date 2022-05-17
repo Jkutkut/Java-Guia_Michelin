@@ -76,7 +76,7 @@ public class MichelinDB extends AccessDB {
         return restaurants;
     }
 
-    public void addRestaurant(Restaurant r) throws SQLiteQueryException, InvalidDataException {
+    public int addRestaurant(Restaurant r) throws SQLiteQueryException, InvalidDataException {
         String query = String.format(
                 "INSERT INTO %s VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
                 TABLE_NAME
@@ -102,5 +102,27 @@ public class MichelinDB extends AccessDB {
                 TABLE_NAME,
                 result
         );
+        return result;
+    }
+
+    public int removeRestaurant(Restaurant r) throws SQLiteQueryException, InvalidDataException {
+        String query = String.format(
+                "DELETE FROM %s WHERE %s = ?;",
+                TABLE_NAME,
+                COLUMN_ID
+        );
+
+        int result = SQLiteQuery.execute(
+            this, query,
+            r.getName()
+        );
+
+        System.out.printf(
+                "Deleted restaurant %s from table %s. Result status: %d\n",
+                r.getName(),
+                TABLE_NAME,
+                result
+        );
+        return result;
     }
 }

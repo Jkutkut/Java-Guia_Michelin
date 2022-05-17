@@ -202,7 +202,6 @@ public class Restaurant {
     }
 
     public void setRegion(String region) {
-        System.out.println(region);
         if (!isValidRegion(region))
             throw new InvalidDataException(INVALID_REGION_MESSAGE);
         this.region = region;

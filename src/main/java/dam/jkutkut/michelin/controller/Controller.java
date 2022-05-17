@@ -11,6 +11,7 @@ import dam.jkutkut.michelin.view.window.ViewWindow;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 
 public class Controller implements ActionListener {
@@ -19,6 +20,8 @@ public class Controller implements ActionListener {
     private ViewRegistration vRegistration;
     private ViewQuery vQuery;
     private ViewModification vModification;
+
+    private ArrayList<Restaurant> restaurants;
 
     public Controller(MichelinDB db, ViewWindow vWindow, ViewRegistration vRegistration, ViewQuery vQuery, ViewModification vModification) {
         this.db = db;
@@ -42,13 +45,21 @@ public class Controller implements ActionListener {
             // Query
             else if (button == vQuery.getBtnSearch()) {
                 try {
-                    vQuery.updateTable(db.getRestaurants());
+                    restaurants = db.getRestaurants();
+                    vQuery.updateTable(restaurants);
                 }
                 catch (Exception error) {
                     vQuery.setError(error.getMessage());
                     System.out.println(error.getMessage());
                     System.out.println(error.getStackTrace());
                 }
+            }
+            else if (button == vQuery.getBtnDelete()) {
+                if (vQuery.restaurantSelected() == -1)
+                    vQuery.setError("No restaurant selected");
+//                else
+//                    db.removeRestaurant(restaurants.get(vQuery.restaurantSelected()));
+                // TODO add test restaurant to test delete
             }
         }
         if (e.getSource() instanceof JMenuItem) {

@@ -63,6 +63,7 @@ public class ViewQuery extends JFrame implements WindowListener, MichelinMenu {
 
         for (int i = 0; i < MichelinDB.TABLE_ATRIBUTES.length; i++)
             dtm.addColumn(MichelinDB.TABLE_ATRIBUTES[i]);
+        tableRestaurants.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     }
 
     // SETTERS
@@ -111,6 +112,10 @@ public class ViewQuery extends JFrame implements WindowListener, MichelinMenu {
 
     public JButton getBtnDelete() {
         return btnDelete;
+    }
+
+    public int restaurantSelected() {
+        return tableRestaurants.getSelectedRow();
     }
 
     // Window listener methods
