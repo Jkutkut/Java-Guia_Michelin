@@ -126,6 +126,8 @@ public class ViewRegistration extends JFrame implements WindowListener, Michelin
     }
 
     public double getMinPrice() {
+        if (txtfMinPrice.getText().isEmpty())
+            return -1;
         try {
             return Double.parseDouble(txtfMinPrice.getText());
         }
@@ -135,6 +137,8 @@ public class ViewRegistration extends JFrame implements WindowListener, Michelin
     }
 
     public double getMaxPrice() {
+        if (txtfMaxPrice.getText().isEmpty())
+            return -1;
         try {
             return Double.parseDouble(txtfMaxPrice.getText());
         }
