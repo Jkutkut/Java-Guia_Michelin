@@ -77,6 +77,10 @@ public class ViewModification extends JFrame implements WindowListener, Michelin
 
     public void setMode(int mode) {
         boolean enableForm = mode == MODIFY_MODE;
+
+        txtfName.setEnabled(!enableForm);
+        btnSearch.setEnabled(!enableForm);
+
         cmbRegion.setEnabled(enableForm);
         txtfAddress.setEnabled(enableForm);
         txtfCity.setEnabled(enableForm);
@@ -92,13 +96,34 @@ public class ViewModification extends JFrame implements WindowListener, Michelin
     }
 
 
+    public void setError(String msg) {
+        JOptionPane.showMessageDialog(this, msg, "Error", JOptionPane.ERROR_MESSAGE);
+    }
+
+    public void setInfo(String msg) {
+        JOptionPane.showMessageDialog(this, msg, "Info", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+
     // GETTERS
     public JPanel getMenu() {
         return jpBody;
     }
 
-    public void setError(String msg) {
-        JOptionPane.showMessageDialog(this, msg, "Error", JOptionPane.ERROR_MESSAGE);
+    public JButton getBtnSearch() {
+        return btnSearch;
+    }
+
+    public JButton getBtnSubmit() {
+        return btnSubmit;
+    }
+
+    public JButton getBtnClear() {
+        return btnClear;
+    }
+
+    public String getName() {
+        return txtfName.getText();
     }
 
     // Window listener methods

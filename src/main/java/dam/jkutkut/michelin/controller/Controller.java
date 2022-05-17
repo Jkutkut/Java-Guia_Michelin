@@ -2,6 +2,7 @@ package dam.jkutkut.michelin.controller;
 
 import dam.jkutkut.db.MichelinDB;
 import dam.jkutkut.exception.InvalidDataException;
+import dam.jkutkut.exception.SQLiteQueryException;
 import dam.jkutkut.michelin.model.Restaurant;
 import dam.jkutkut.michelin.view.registration.ViewRegistration;
 import dam.jkutkut.michelin.view.query.ViewQuery;
@@ -11,6 +12,7 @@ import dam.jkutkut.michelin.view.window.ViewWindow;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 
@@ -63,7 +65,23 @@ public class Controller implements ActionListener {
             }
 
             // Modification
-
+            else if (button == vModification.getBtnSearch()) {
+                if (vModification.getName().isEmpty()) {
+                    vModification.setError("Name field is empty");
+                    return;
+                }
+                try {
+//                    Restaurant r = db.getRestaurant(vModification.getName()); // TODO
+//                    vModification.setRestaurant(r);
+                    vModification.setMode(vModification.MODIFY_MODE);
+                }
+                catch (SQLiteQueryException e1) {
+                    vModification.setError(e1.getMessage());
+                }
+                catch (InvalidDataException e2) {
+                    vModification.setInfo(e2.getMessage());
+                }
+            }
         }
         if (e.getSource() instanceof JMenuItem) {
             JMenuItem menuItem = (JMenuItem) e.getSource();
