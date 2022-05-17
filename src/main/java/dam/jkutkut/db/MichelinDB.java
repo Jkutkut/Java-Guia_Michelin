@@ -64,8 +64,7 @@ public class MichelinDB extends AccessDB {
             r.setCity((String) row[3]);
             r.setDistinction((Integer) row[4]);
             r.setAddress((String) row[5]);
-            if (row[6] != null)
-                r.setMinPrice((Double) row[6]);
+            r.setMinPrice((Double) row[6]);
             if (row[7] != null)
                 r.setMaxPrice((Double) row[7]);
             r.setType((String) row[8]);
@@ -129,25 +128,17 @@ public class MichelinDB extends AccessDB {
     }
 
     public Restaurant getRestaurant(String name) throws SQLiteQueryException, InvalidDataException {
-//        String query = String.format(
-//                "SELECT * FROM %s WHERE %s LIKE %s;",
-//                TABLE_NAME,
-//                COLUMN_ID,
-//                "'%?%'"
-//        );
         String query = String.format(
-                "SELECT * FROM %s WHERE %s LIKE '%%?%%';",
+                "SELECT * FROM %s WHERE %s LIKE ?;",
                 TABLE_NAME,
                 COLUMN_ID
         );
-
-        System.out.println(query);
 
         ArrayList<Object[]> data = SQLiteQuery.get(
                 this,
                 11,
                 query,
-                name
+                "%" + name + "%"
         );
 
         if (data.size() == 0)
