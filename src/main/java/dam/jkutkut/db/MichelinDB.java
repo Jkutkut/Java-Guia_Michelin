@@ -127,4 +127,44 @@ public class MichelinDB extends AccessDB {
         );
         return result;
     }
+
+    public Restaurant getRestaurant(String name) throws SQLiteQueryException, InvalidDataException {
+//        String query = String.format(
+//                "SELECT * FROM %s WHERE %s LIKE %s;",
+//                TABLE_NAME,
+//                COLUMN_ID,
+//                "'%?%'"
+//        );
+        String query = String.format(
+                "SELECT * FROM %s WHERE %s LIKE '%%?%%';",
+                TABLE_NAME,
+                COLUMN_ID
+        );
+
+        System.out.println(query);
+
+        ArrayList<Object[]> data = SQLiteQuery.get(
+                this,
+                11,
+                query,
+                name
+        );
+
+        if (data.size() == 0)
+            return null;
+        Restaurant r = new Restaurant();
+
+        r.setName((String) data.get(0)[1]);
+        r.setRegion((String) data.get(0)[2]);
+        r.setCity((String) data.get(0)[3]);
+        r.setDistinction((Integer) data.get(0)[4]);
+        r.setAddress((String) data.get(0)[5]);
+        r.setMinPrice((Double) data.get(0)[6]);
+        if (data.get(0)[7] != null)
+            r.setMaxPrice((Double) data.get(0)[7]);
+        r.setType((String) data.get(0)[8]);
+        r.setPhone((String) data.get(0)[9]);
+        r.setWeb((String) data.get(0)[10]);
+        return r;
+    }
 }

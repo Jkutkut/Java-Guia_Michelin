@@ -71,7 +71,10 @@ public class Controller implements ActionListener {
                     return;
                 }
                 try {
-//                    Restaurant r = db.getRestaurant(vModification.getName()); // TODO
+                    Restaurant r = db.getRestaurant(vModification.getName());
+                    if (r == null) {
+                        throw new InvalidDataException("Restaurant not found");
+                    }
 //                    vModification.setRestaurant(r);
                     vModification.setMode(vModification.MODIFY_MODE);
                 }
