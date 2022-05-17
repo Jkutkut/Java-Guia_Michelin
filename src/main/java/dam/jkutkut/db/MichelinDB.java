@@ -78,7 +78,9 @@ public class MichelinDB extends AccessDB {
 
     public int addRestaurant(Restaurant r) throws SQLiteQueryException, InvalidDataException {
         String query = String.format(
-                "INSERT INTO %s VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
+                "INSERT INTO %s VALUES ((SELECT MAX(%s) FROM %s) + 1, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
+                TABLE_NAME,
+                "ID",
                 TABLE_NAME
         );
 
