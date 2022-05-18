@@ -51,7 +51,6 @@ public class SQLiteQuery {
         }
         return output;
     }
-
     public static ArrayList<Object[]> get(AccessDB db, int outputLength, String query, Object... input) throws SQLiteQueryException {
         return getFromDB(db, outputLength, query, input);
     }

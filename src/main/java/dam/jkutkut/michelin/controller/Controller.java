@@ -142,7 +142,7 @@ public class Controller implements ActionListener {
             if (r == null) {
                 throw new InvalidDataException("Restaurant not found");
             }
-//                    vModification.setRestaurant(r);
+            vModification.setRestaurant(r);
             vModification.setMode(vModification.MODIFY_MODE);
         }
         catch (SQLiteQueryException e1) {

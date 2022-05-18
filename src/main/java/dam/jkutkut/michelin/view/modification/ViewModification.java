@@ -105,6 +105,19 @@ public class ViewModification extends JFrame implements MichelinMenu {
         txtfWeb.setText("");
     }
 
+    public void setRestaurant(Restaurant r) {
+        txtfName.setText(r.getName());
+        cmbRegion.setSelectedItem(r.getRegion());
+        txtfCity.setText(r.getCity());
+        txtfAddress.setText(r.getAddress());
+        cmbType.setSelectedItem(r.getType());
+        spDistinction.setValue(r.getDistinction());
+        txtfMinPrice.setText(String.valueOf(r.getMinPrice()));
+        txtfMaxPrice.setText(String.valueOf(r.getMaxPrice()));
+        txtfPhone.setText(r.getPhone());
+        txtfWeb.setText(r.getWeb());
+    }
+
     public void setError(String msg) {
         JOptionPane.showMessageDialog(this, msg, "Error", JOptionPane.ERROR_MESSAGE);
     }
