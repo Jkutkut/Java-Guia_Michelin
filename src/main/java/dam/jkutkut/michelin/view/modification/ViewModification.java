@@ -191,10 +191,14 @@ public class ViewModification extends JFrame implements MichelinMenu {
     }
 
     public String getPhone() {
+        if (txtfPhone.getText().isEmpty())
+            return null;
         return txtfPhone.getText();
     }
 
     public String getWeb() {
+        if (txtfWeb.getText().isEmpty())
+            return null;
         return txtfWeb.getText();
     }
 }
