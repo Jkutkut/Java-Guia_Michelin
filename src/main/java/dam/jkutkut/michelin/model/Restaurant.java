@@ -307,10 +307,10 @@ public class Restaurant {
     }
 
     public static boolean isValidPhone(String phone) {
-        return phone != null && phone.matches(PHONE_REGEX);
+        return phone == null || phone.matches(PHONE_REGEX);
     }
 
     public static boolean isValidWeb(String web) {
-        return web != null && web.matches(WEB_REGEX);
+        return web == null || web.matches(WEB_REGEX);
     }
 }
