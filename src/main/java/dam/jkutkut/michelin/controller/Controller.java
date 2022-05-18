@@ -49,44 +49,15 @@ public class Controller implements ActionListener {
                 updateTable();
             }
             else if (button == vQuery.getBtnDelete()) {
-                if (vQuery.restaurantSelected() == -1) {
-                    vQuery.setError("No restaurant selected");
-                    return;
-                }
-                try {
-                    db.removeRestaurant(restaurants.get(vQuery.restaurantSelected()));
-                    updateTable();
-                }
-                catch (Exception error) {
-                    vQuery.setError(error.getMessage());
-                    System.out.println(error.getMessage());
-                    System.out.println(error.getStackTrace());
-                }
+                deleteRestaurant();
             }
 
             // Modification
             else if (button == vModification.getBtnSearch()) {
-                if (vModification.getName().isEmpty()) {
-                    vModification.setError("Name field is empty");
-                    return;
-                }
-                try {
-                    Restaurant r = db.getRestaurant(vModification.getName());
-                    if (r == null) {
-                        throw new InvalidDataException("Restaurant not found");
-                    }
-//                    vModification.setRestaurant(r);
-                    vModification.setMode(vModification.MODIFY_MODE);
-                }
-                catch (SQLiteQueryException e1) {
-                    vModification.setError(e1.getMessage());
-                }
-                catch (InvalidDataException e2) {
-                    vModification.setInfo(e2.getMessage());
-                }
+                searchRestaurants();
             }
             else if (button == vModification.getBtnSubmit()) {
-                // TODO
+                consultRestaurants();
             }
             else if (button == vModification.getBtnClear()) {
                 vModification.clearForm();
@@ -104,18 +75,7 @@ public class Controller implements ActionListener {
         }
     }
 
-    private void updateTable() {
-        try {
-            restaurants = db.getRestaurants();
-            vQuery.updateTable(restaurants);
-        }
-        catch (Exception error) {
-            vQuery.setError(error.getMessage());
-            System.out.println(error.getMessage());
-            System.out.println(error.getStackTrace());
-        }
-    }
-
+    // *********** Registration ***********
     public void registerRestaurant() {
         Restaurant restaurant = new Restaurant();
         try {
@@ -141,8 +101,56 @@ public class Controller implements ActionListener {
         }
     }
 
-    public void searchRestaurants() {
+    // *********** Query ***********
+    private void updateTable() {
+        try {
+            restaurants = db.getRestaurants();
+            vQuery.updateTable(restaurants);
+        }
+        catch (Exception error) {
+            vQuery.setError(error.getMessage());
+            System.out.println(error.getMessage());
+            System.out.println(error.getStackTrace());
+        }
+    }
 
+    private void deleteRestaurant() {
+        if (vQuery.restaurantSelected() == -1) {
+            vQuery.setError("No restaurant selected");
+            return;
+        }
+        try {
+            db.removeRestaurant(restaurants.get(vQuery.restaurantSelected()));
+            updateTable();
+        }
+        catch (Exception error) {
+            vQuery.setError(error.getMessage());
+            System.out.println(error.getMessage());
+            System.out.println(error.getStackTrace());
+        }
+    }
+
+    // *********** Modification ***********
+
+    public void searchRestaurants() {
+        if (vModification.getName().isEmpty()) {
+            vModification.setError("Name field is empty");
+            return;
+        }
+        try {
+            Restaurant r = db.getRestaurant(vModification.getName());
+            if (r == null) {
+                throw new InvalidDataException("Restaurant not found");
+            }
+//                    vModification.setRestaurant(r);
+            vModification.setMode(vModification.MODIFY_MODE);
+        }
+        catch (SQLiteQueryException e1) {
+            vModification.setError(e1.getMessage());
+        }
+        catch (InvalidDataException e2) {
+            vModification.setInfo(e2.getMessage());
+        }
     }
 
     public void consultRestaurants() {
