@@ -73,24 +73,23 @@ public class ViewQuery extends JFrame implements MichelinMenu {
 
     public void updateTable(ArrayList<Restaurant> restaurants) {
         dtm.setRowCount(0); // clear table
-        for (Restaurant restaurant : restaurants) {
-            if (wantedRegion(restaurant.getRegion()) && wantedDistinction(restaurant.getDistinction()))
-                dtm.addRow(restaurant.toArray());
-        }
+        for (Restaurant restaurant : restaurants)
+            dtm.addRow(restaurant.toArray());
         if (dtm.getRowCount() == 0)
             JOptionPane.showMessageDialog(this, "No results found", "Error", JOptionPane.ERROR_MESSAGE);
     }
 
-    private boolean wantedDistinction(int distinction) {
-        if (cmbDistinction.getSelectedIndex() == Restaurant.DISTINCTIONS.length - 1)
-            return true;
-        return distinction == cmbDistinction.getSelectedIndex() + 1;
-    }
-
-    private boolean wantedRegion(String region) {
-        if (cmbRegion.getSelectedIndex() == Restaurant.REGIONS.length - 1)
-            return true;
-        return region.equals(cmbRegion.getSelectedItem());
+    public Object[] getFilterConditions() {
+        ArrayList<Object> conditions = new ArrayList<>();
+        if (cmbRegion.getSelectedIndex() != Restaurant.REGIONS.length - 1) {
+            conditions.add(MichelinDB.REGION_ATRIBUTE);
+            conditions.add(cmbRegion.getSelectedItem());
+        }
+        if (cmbDistinction.getSelectedIndex() != Restaurant.DISTINCTIONS.length - 1) {
+            conditions.add(MichelinDB.DISTINCTION_ATRIBUTE);
+            conditions.add(cmbDistinction.getSelectedIndex() + 1);
+        }
+        return conditions.toArray();
     }
 
     public void setError(String msg) {

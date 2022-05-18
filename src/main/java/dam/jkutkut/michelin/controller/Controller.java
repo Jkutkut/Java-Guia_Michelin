@@ -104,7 +104,7 @@ public class Controller implements ActionListener {
     // *********** Query ***********
     private void updateTable() {
         try {
-            restaurants = db.getRestaurants();
+            restaurants = db.getRestaurants(vQuery.getFilterConditions());
             vQuery.updateTable(restaurants);
         }
         catch (Exception error) {
