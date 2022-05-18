@@ -4,6 +4,7 @@ import dam.jkutkut.exception.InvalidDataException;
 import dam.jkutkut.exception.SQLiteQueryException;
 import dam.jkutkut.michelin.model.Restaurant;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class MichelinDB extends AccessDB {
@@ -47,25 +48,7 @@ public class MichelinDB extends AccessDB {
             TABLE_NAME,
             conditions
         );
-
-        ArrayList<Restaurant> restaurants = new ArrayList<>();
-        Restaurant r;
-        for (Object[] row : data) {
-            r = new Restaurant();
-            r.setName((String) row[1]);
-            r.setRegion((String) row[2]);
-            r.setCity((String) row[3]);
-            r.setDistinction((Integer) row[4]);
-            r.setAddress((String) row[5]);
-            r.setMinPrice((Double) row[6]);
-            if (row[7] != null)
-                r.setMaxPrice((Double) row[7]);
-            r.setType((String) row[8]);
-            r.setPhone((String) row[9]);
-            r.setWeb((String) row[10]);
-            restaurants.add(r);
-        }
-        return restaurants;
+        return sqlite2restaurants(data);
     }
 
     public int addRestaurant(Restaurant r) throws SQLiteQueryException, InvalidDataException {
@@ -136,19 +119,27 @@ public class MichelinDB extends AccessDB {
 
         if (data.size() == 0)
             return null;
-        Restaurant r = new Restaurant();
+        return sqlite2restaurants(data).get(0);
+    }
 
-        r.setName((String) data.get(0)[1]);
-        r.setRegion((String) data.get(0)[2]);
-        r.setCity((String) data.get(0)[3]);
-        r.setDistinction((Integer) data.get(0)[4]);
-        r.setAddress((String) data.get(0)[5]);
-        r.setMinPrice((Double) data.get(0)[6]);
-        if (data.get(0)[7] != null)
-            r.setMaxPrice((Double) data.get(0)[7]);
-        r.setType((String) data.get(0)[8]);
-        r.setPhone((String) data.get(0)[9]);
-        r.setWeb((String) data.get(0)[10]);
-        return r;
+    private static ArrayList<Restaurant> sqlite2restaurants(ArrayList<Object[]> data) {
+        ArrayList<Restaurant> restaurants = new ArrayList<>();
+        Restaurant r;
+        for (Object[] row : data) {
+            r = new Restaurant();
+            r.setName((String) row[1]);
+            r.setRegion((String) row[2]);
+            r.setCity((String) row[3]);
+            r.setDistinction((Integer) row[4]);
+            r.setAddress((String) row[5]);
+            r.setMinPrice((Double) row[6]);
+            if (row[7] != null)
+                r.setMaxPrice((Double) row[7]);
+            r.setType((String) row[8]);
+            r.setPhone((String) row[9]);
+            r.setWeb((String) row[10]);
+            restaurants.add(r);
+        }
+        return restaurants;
     }
 }
