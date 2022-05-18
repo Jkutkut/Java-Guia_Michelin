@@ -170,12 +170,8 @@ public class Restaurant {
         for (int i = 0; i < this.distinction; i++)
             distin += "*";
         String price;
-        if (this.maxPrice == NULL_PRICE) {
-            if (this.minPrice == NULL_PRICE)
-                price = "??";
-            else
-                price = String.format("%.2f€", this.minPrice);
-        }
+        if (this.maxPrice == NULL_PRICE)
+            price = String.format("%.2f€", this.minPrice);
         else
             price = String.format("%.2f€ - %.2f€", this.minPrice, this.maxPrice);
 
@@ -292,9 +288,9 @@ public class Restaurant {
     }
 
     public static boolean isValidMaxPrice(double maxPrice, double minPrice) {
-        if (maxPrice != NULL_PRICE)
-            return maxPrice >= minPrice;
-        return true;
+        if (maxPrice == NULL_PRICE)
+            return true;
+        return maxPrice >= minPrice && maxPrice > 0;
     }
 
     public static boolean isValidType(String type) {
