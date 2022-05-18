@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class SQLiteQuery {
-    public static ArrayList<Object[]> get(AccessDB db, int outputLength, String query, Object... input) throws SQLiteQueryException {
+    private static ArrayList<Object[]> getFromDB(AccessDB db, int outputLength, String query, Object[] input) throws SQLiteQueryException {
         ArrayList<Object[]> output = new ArrayList<>();
 
         Connection con = null;
@@ -52,6 +52,18 @@ public class SQLiteQuery {
         return output;
     }
 
+    public static ArrayList<Object[]> get(AccessDB db, int outputLength, String query, Object... input) throws SQLiteQueryException {
+        return getFromDB(db, outputLength, query, input);
+    }
+    public static ArrayList<Object[]> getWhere(AccessDB db, int outputLength, String tableName, Object... conditions) throws SQLiteQueryException {
+        String query = "SELECT * FROM " + tableName + " WHERE ";
+        Object[] input = new Object[conditions.length / 2];
+        for (int i = 0; i < conditions.length; i += 2) {
+            query += conditions[i] + " = ?";
+            input[i / 2] = conditions[i + 1];
+        }
+        return getFromDB(db, outputLength, query, input);
+    }
     public static int execute(AccessDB db, String query, Object... input) throws SQLiteQueryException {
         int result;
 
