@@ -119,23 +119,23 @@ public class ViewRegistration extends JFrame implements MichelinMenu {
 
     public double getMinPrice() {
         if (txtfMinPrice.getText().isEmpty())
-            return -1;
+            return Restaurant.NULL_PRICE;
         try {
             return Double.parseDouble(txtfMinPrice.getText());
         }
         catch (NumberFormatException e) {
-            return -1;
+            return Restaurant.NULL_PRICE;
         }
     }
 
     public double getMaxPrice() {
         if (txtfMaxPrice.getText().isEmpty())
-            return -1;
+            return Restaurant.NULL_PRICE;
         try {
             return Double.parseDouble(txtfMaxPrice.getText());
         }
         catch (NumberFormatException e) {
-            return -1;
+            return Restaurant.NULL_PRICE;
         }
     }
 

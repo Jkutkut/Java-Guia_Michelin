@@ -85,9 +85,7 @@ public class Controller implements ActionListener {
             restaurant.setDistinction(vRegistration.getDistinction());
             restaurant.setAddress(vRegistration.getAddress());
             restaurant.setMinPrice(vRegistration.getMinPrice());
-            System.out.println(vRegistration.getMaxPrice());
-            if (vRegistration.getMaxPrice() != -1.0)
-                restaurant.setMaxPrice(vRegistration.getMaxPrice());
+            restaurant.setMaxPrice(vRegistration.getMaxPrice());
             restaurant.setType(vRegistration.getRestType());
             restaurant.setPhone(vRegistration.getPhone());
             restaurant.setWeb(vRegistration.getWeb());
@@ -162,8 +160,7 @@ public class Controller implements ActionListener {
             restaurant.setDistinction(vModification.getDistinction());
             restaurant.setAddress(vModification.getAddress());
             restaurant.setMinPrice(vModification.getMinPrice());
-            if (vModification.getMaxPrice() != -1.0)
-                restaurant.setMaxPrice(vModification.getMaxPrice());
+            restaurant.setMaxPrice(vModification.getMaxPrice());
             restaurant.setType(vModification.getRestType());
             restaurant.setPhone(vModification.getPhone());
             restaurant.setWeb(vModification.getWeb());
