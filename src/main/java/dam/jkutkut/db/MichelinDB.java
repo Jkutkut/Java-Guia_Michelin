@@ -12,18 +12,17 @@ public class MichelinDB extends AccessDB {
     private static final String TABLE_NAME = "RESTAURANTES";
     private static final String COLUMN_ID = "NOMBRE";
 
-    public static final String[] ATRIBUTES = {
-        COLUMN_ID,
-        "REGION",
-        "CIUDAD",
-        "DISTINCION",
-        "DIRECCION",
-        "PRECIO_MIN",
-        "PRECIO_MAX",
-        "COCINA",
-        "TELEFONO",
-        "WEB"
-    };
+    public static final String REGION_ATRIBUTE = "REGION";
+//    public static final String CITY_ATRIBUTE = "CIUDAD";
+    public static final String DISTINCTION_ATRIBUTE = "DISTINCION";
+//    public static final String ADDRESS_ATRIBUTE = "DIRECCION";
+//    public static final String PRICE_MIN_ATRIBUTE = "PRECIO_MIN";
+//    public static final String PRICE_MAX_ATRIBUTE = "PRECIO_MAX";
+//    public static final String TYPE_ATRIBUTE = "COCINA";
+//    public static final String PHONE_ATRIBUTE = "TELEFONO";
+//    public static final String WEB_ATRIBUTE = "WEB";
+
+
 
     public static final String[] TABLE_ATRIBUTES = {
         "Nombre",
@@ -41,18 +40,12 @@ public class MichelinDB extends AccessDB {
         super(DB_LOCATION);
     }
 
-    public ArrayList<Restaurant> getRestaurants() throws SQLiteQueryException, InvalidDataException {
-        // SELECT * FROM TABLE
-        String query = String.format(
-                "SELECT * FROM %s;",
-                TABLE_NAME,
-                COLUMN_ID
-        );
-
-        ArrayList<Object[]> data = SQLiteQuery.get(
-                this,
-                11,
-                query
+    public ArrayList<Restaurant> getRestaurants(Object[] conditions) throws SQLiteQueryException, InvalidDataException {
+        ArrayList<Object[]> data = SQLiteQuery.getWhere(
+            this,
+            11,
+            TABLE_NAME,
+            conditions
         );
 
         ArrayList<Restaurant> restaurants = new ArrayList<>();
