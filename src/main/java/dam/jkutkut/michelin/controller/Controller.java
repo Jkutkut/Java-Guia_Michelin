@@ -57,7 +57,7 @@ public class Controller implements ActionListener {
                 searchRestaurants();
             }
             else if (button == vModification.getBtnSubmit()) {
-                consultRestaurants();
+                updateRestaurant();
             }
             else if (button == vModification.getBtnClear()) {
                 vModification.clearForm();
@@ -153,7 +153,28 @@ public class Controller implements ActionListener {
         }
     }
 
-    public void consultRestaurants() {
+    public void updateRestaurant() {
+        Restaurant restaurant = new Restaurant();
+        try {
+            restaurant.setName(vModification.getName());
+            restaurant.setRegion(vModification.getRegion());
+            restaurant.setCity(vModification.getCity());
+            restaurant.setDistinction(vModification.getDistinction());
+            restaurant.setAddress(vModification.getAddress());
+            restaurant.setMinPrice(vModification.getMinPrice());
+            if (vModification.getMaxPrice() != -1.0)
+                restaurant.setMaxPrice(vModification.getMaxPrice());
+            restaurant.setType(vModification.getRestType());
+            restaurant.setPhone(vModification.getPhone());
+            restaurant.setWeb(vModification.getWeb());
 
+            restaurant.validate();
+
+//            db.updateRestaurant(restaurant); // TODO
+            vModification.setInfo("Restaurant updated");
+        }
+        catch (InvalidDataException e) {
+            vModification.setError(e.getMessage());
+        }
     }
 }

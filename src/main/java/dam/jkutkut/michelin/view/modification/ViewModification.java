@@ -147,4 +147,54 @@ public class ViewModification extends JFrame implements MichelinMenu {
     public String getName() {
         return txtfName.getText();
     }
+
+    public String getRegion() {
+        return (String) cmbRegion.getSelectedItem();
+    }
+
+    public String getCity() {
+        return txtfCity.getText();
+    }
+
+    public int getDistinction() {
+        return (int) spDistinction.getValue();
+    }
+
+    public String getAddress() {
+        return txtfAddress.getText();
+    }
+
+    public double getMinPrice() {
+        if (txtfMinPrice.getText().isEmpty())
+            return -1;
+        try {
+            return Double.parseDouble(txtfMinPrice.getText());
+        }
+        catch (NumberFormatException e) {
+            return -1;
+        }
+    }
+
+    public double getMaxPrice() {
+        if (txtfMaxPrice.getText().isEmpty())
+            return -1;
+        try {
+            return Double.parseDouble(txtfMaxPrice.getText());
+        }
+        catch (NumberFormatException e) {
+            return -1;
+        }
+    }
+
+    public String getRestType() {
+        return (String) cmbType.getSelectedItem();
+    }
+
+    public String getPhone() {
+        return txtfPhone.getText();
+    }
+
+    public String getWeb() {
+        return txtfWeb.getText();
+    }
 }
