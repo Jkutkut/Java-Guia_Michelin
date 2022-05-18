@@ -56,12 +56,20 @@ public class SQLiteQuery {
         return getFromDB(db, outputLength, query, input);
     }
     public static ArrayList<Object[]> getWhere(AccessDB db, int outputLength, String tableName, Object... conditions) throws SQLiteQueryException {
-        String query = "SELECT * FROM " + tableName + " WHERE ";
+        String query = "SELECT * FROM " + tableName;
         Object[] input = new Object[conditions.length / 2];
-        for (int i = 0; i < conditions.length; i += 2) {
-            query += conditions[i] + " = ?";
-            input[i / 2] = conditions[i + 1];
+
+        if (conditions.length > 0) {
+            query += " WHERE ";
+            query += conditions[0] + " = ?";
+            input[0] = conditions[1];
+
+            for (int i = 2; i < conditions.length; i += 2) {
+                query += " AND " + conditions[i] + " = ?";
+                input[i / 2] = conditions[i + 1];
+            }
         }
+        System.out.println(query);
         return getFromDB(db, outputLength, query, input);
     }
     public static int execute(AccessDB db, String query, Object... input) throws SQLiteQueryException {
