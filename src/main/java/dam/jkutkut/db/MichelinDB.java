@@ -156,11 +156,8 @@ public class MichelinDB extends AccessDB {
                 COLUMN_ID
         );
 
-        System.out.println(query);
-
         int result = SQLiteQuery.execute(
                 this, query,
-                r.getName(),
                 input.toArray()
         );
 
