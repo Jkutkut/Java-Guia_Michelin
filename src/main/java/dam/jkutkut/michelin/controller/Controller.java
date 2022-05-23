@@ -126,7 +126,8 @@ public class Controller implements ActionListener {
         }
         try {
             db.removeRestaurant(restaurants.get(vQuery.restaurantSelected()));
-            updateTable();
+            if (restaurants.size() > 1)
+                updateTable();
         }
         catch (Exception error) {
             vQuery.setError(error.getMessage());
