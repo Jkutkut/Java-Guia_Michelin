@@ -116,6 +116,7 @@ public class Controller implements ActionListener {
             vQuery.setError(error.getMessage());
             System.out.println(error.getMessage());
             System.out.println(error.getStackTrace());
+            vQuery.hideTable();
         }
     }
 
@@ -128,6 +129,8 @@ public class Controller implements ActionListener {
             db.removeRestaurant(restaurants.get(vQuery.restaurantSelected()));
             if (restaurants.size() > 1)
                 updateTable();
+            else
+                vQuery.hideTable();
         }
         catch (Exception error) {
             vQuery.setError(error.getMessage());

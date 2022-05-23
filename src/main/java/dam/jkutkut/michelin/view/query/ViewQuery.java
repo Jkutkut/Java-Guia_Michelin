@@ -63,6 +63,8 @@ public class ViewQuery extends JFrame implements MichelinMenu {
         for (int i = 0; i < MichelinDB.TABLE_ATRIBUTES.length; i++)
             dtm.addColumn(MichelinDB.TABLE_ATRIBUTES[i]);
         tableRestaurants.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+        hideTable();
     }
 
     // SETTERS
@@ -72,11 +74,22 @@ public class ViewQuery extends JFrame implements MichelinMenu {
     }
 
     public void updateTable(ArrayList<Restaurant> restaurants) {
+        showTable();
         dtm.setRowCount(0); // clear table
         for (Restaurant restaurant : restaurants)
             dtm.addRow(restaurant.toArray());
-        if (dtm.getRowCount() == 0)
+        if (dtm.getRowCount() == 0) {
+            hideTable();1
             JOptionPane.showMessageDialog(this, "No results found", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public void hideTable() {
+        jpQuery.setVisible(false);
+    }
+
+    public void showTable() {
+        jpQuery.setVisible(true);
     }
 
     public Object[] getFilterConditions() {
