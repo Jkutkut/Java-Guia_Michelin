@@ -98,6 +98,8 @@ public class Controller implements ActionListener {
             restaurant.validate();
 
             db.addRestaurant(restaurant);
+            vRegistration.clearForm();
+            vRegistration.setInfo("Restaurant added successfully");
         }
         catch (InvalidDataException e) {
             vRegistration.setError(e.getMessage());

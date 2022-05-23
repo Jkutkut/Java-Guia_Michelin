@@ -70,6 +70,10 @@ public class ViewRegistration extends JFrame implements MichelinMenu {
         JOptionPane.showMessageDialog(this, msg, "Error", JOptionPane.ERROR_MESSAGE);
     }
 
+    public void setInfo(String msg) {
+        JOptionPane.showMessageDialog(this, msg, "Info", JOptionPane.INFORMATION_MESSAGE);
+    }
+
     public void clearForm() {
         txtfName.setText("");
         cmbType.setSelectedIndex(0);
