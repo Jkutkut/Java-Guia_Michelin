@@ -1,6 +1,7 @@
 package dam.jkutkut.michelin.model;
 
 import dam.jkutkut.exception.InvalidDataException;
+import dam.jkutkut.db.MichelinDB;
 
 public class Restaurant {
     public static final String[] REGIONS = {
@@ -50,6 +51,7 @@ public class Restaurant {
     private static final String PHONE_REGEX = "^(\\+\\d{2,3})? ?\\d{3} ?(\\d{3} ?\\d{3}|\\d{2} ?\\d{2} ?\\d{2})$";
     private static final String WEB_REGEX = "(http[s]?:\\/\\/)?(ww[w2]\\.)?(([a-zA-Z0-9\\-]+\\.)+([a-zA-Z\\-])+)";
 
+    private static final String INVALID_FIELD_MESSAGE = "Invalid field";
     private static final String INVALID_NAME_MESSAGE = "Invalid name";
     private static final String INVALID_REGION_MESSAGE = "Invalid region";
     private static final String INVALID_CITY_MESSAGE = "Invalid city";
@@ -123,6 +125,33 @@ public class Restaurant {
             throw new InvalidDataException(INVALID_PHONE_MESSAGE);
         if (!isValidWeb(this.web))
             throw new InvalidDataException(INVALID_WEB_MESSAGE);
+    }
+
+    public Object get(String field) throws InvalidDataException {
+        switch (field) {
+            case MichelinDB.NAME_ATRIBUTE:
+                return this.name;
+            case MichelinDB.REGION_ATRIBUTE:
+                return this.region;
+            case MichelinDB.CITY_ATRIBUTE:
+                return this.city;
+            case MichelinDB.DISTINCTION_ATRIBUTE:
+                return this.distinction;
+            case MichelinDB.ADDRESS_ATRIBUTE:
+                return this.address;
+            case MichelinDB.PRICE_MIN_ATRIBUTE:
+                return this.minPrice;
+            case MichelinDB.PRICE_MAX_ATRIBUTE:
+                return this.maxPrice;
+            case MichelinDB.TYPE_ATRIBUTE:
+                return this.type;
+            case MichelinDB.PHONE_ATRIBUTE:
+                return this.phone;
+            case MichelinDB.WEB_ATRIBUTE:
+                return this.web;
+            default:
+                throw new InvalidDataException(INVALID_FIELD_MESSAGE);
+        }
     }
 
     public String getName() {

@@ -24,6 +24,7 @@ public class Controller implements ActionListener {
     private ViewModification vModification;
 
     private ArrayList<Restaurant> restaurants;
+    private Restaurant modifiedRestaurant;
 
     public Controller(MichelinDB db, ViewWindow vWindow, ViewRegistration vRegistration, ViewQuery vQuery, ViewModification vModification) {
         this.db = db;
@@ -31,6 +32,9 @@ public class Controller implements ActionListener {
         this.vModification = vModification;
         this.vRegistration = vRegistration;
         this.vQuery = vQuery;
+
+        restaurants = null;
+        modifiedRestaurant = null;
     }
 
     @Override
@@ -61,6 +65,7 @@ public class Controller implements ActionListener {
             }
             else if (button == vModification.getBtnClear()) {
                 vModification.clearForm();
+                modifiedRestaurant = null;
                 vModification.setMode(vModification.SEARCH_MODE);
             }
         }
@@ -136,11 +141,11 @@ public class Controller implements ActionListener {
             return;
         }
         try {
-            Restaurant r = db.getRestaurant(vModification.getName());
-            if (r == null) {
+            modifiedRestaurant = db.getRestaurant(vModification.getName());
+            if (modifiedRestaurant == null) {
                 throw new InvalidDataException("Restaurant not found");
             }
-            vModification.setRestaurant(r);
+            vModification.setRestaurant(modifiedRestaurant);
             vModification.setMode(vModification.MODIFY_MODE);
         }
         catch (SQLiteQueryException e1) {
@@ -167,7 +172,7 @@ public class Controller implements ActionListener {
 
             restaurant.validate();
 
-//            db.updateRestaurant(restaurant); // TODO
+            db.updateRestaurant(modifiedRestaurant, restaurant); // TODO
             vModification.setInfo("Restaurant updated");
         }
         catch (InvalidDataException e) {

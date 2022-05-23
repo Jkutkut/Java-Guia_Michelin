@@ -11,19 +11,32 @@ public class MichelinDB extends AccessDB {
     private static final String DB_LOCATION = "db/GUIA_MICHELIN.db";
 
     private static final String TABLE_NAME = "RESTAURANTES";
+
     private static final String COLUMN_ID = "NOMBRE";
 
+    public static final String NAME_ATRIBUTE = "NOMBRE";
     public static final String REGION_ATRIBUTE = "REGION";
-//    public static final String CITY_ATRIBUTE = "CIUDAD";
+    public static final String CITY_ATRIBUTE = "CIUDAD";
     public static final String DISTINCTION_ATRIBUTE = "DISTINCION";
-//    public static final String ADDRESS_ATRIBUTE = "DIRECCION";
-//    public static final String PRICE_MIN_ATRIBUTE = "PRECIO_MIN";
-//    public static final String PRICE_MAX_ATRIBUTE = "PRECIO_MAX";
-//    public static final String TYPE_ATRIBUTE = "COCINA";
-//    public static final String PHONE_ATRIBUTE = "TELEFONO";
-//    public static final String WEB_ATRIBUTE = "WEB";
+    public static final String ADDRESS_ATRIBUTE = "DIRECCION";
+    public static final String PRICE_MIN_ATRIBUTE = "PRECIO_MIN";
+    public static final String PRICE_MAX_ATRIBUTE = "PRECIO_MAX";
+    public static final String TYPE_ATRIBUTE = "COCINA";
+    public static final String PHONE_ATRIBUTE = "TELEFONO";
+    public static final String WEB_ATRIBUTE = "WEB";
 
-
+    public static final String[] DB_TABLE_ATRIBUTES = {
+            NAME_ATRIBUTE,
+            REGION_ATRIBUTE,
+            CITY_ATRIBUTE,
+            DISTINCTION_ATRIBUTE,
+            ADDRESS_ATRIBUTE,
+            PRICE_MIN_ATRIBUTE,
+            PRICE_MAX_ATRIBUTE,
+            TYPE_ATRIBUTE,
+            PHONE_ATRIBUTE,
+            WEB_ATRIBUTE
+    };
 
     public static final String[] TABLE_ATRIBUTES = {
         "Nombre",
@@ -120,6 +133,44 @@ public class MichelinDB extends AccessDB {
         if (data.size() == 0)
             return null;
         return sqlite2restaurants(data).get(0);
+    }
+
+    public int updateRestaurant(Restaurant r, Restaurant ref) throws SQLiteQueryException, InvalidDataException {
+        ArrayList<Object> input = new ArrayList<>();
+        ArrayList<String> conditions = new ArrayList<>();
+        for (int i = 0; i < DB_TABLE_ATRIBUTES.length; i++) {
+            if (!r.get(DB_TABLE_ATRIBUTES[i]).equals(ref.get(DB_TABLE_ATRIBUTES[i]))) {
+                conditions.add(DB_TABLE_ATRIBUTES[i] + " = ?");
+                input.add(ref.get(DB_TABLE_ATRIBUTES[i]));
+            }
+        }
+        input.add(r.getName());
+
+        if (conditions.size() == 0)
+            throw new InvalidDataException("No changes to update");
+
+        String query = String.format(
+                "UPDATE %s SET %s WHERE %s = ?;",
+                TABLE_NAME,
+                String.join(", ", conditions),
+                COLUMN_ID
+        );
+
+        System.out.println(query);
+
+        int result = SQLiteQuery.execute(
+                this, query,
+                r.getName(),
+                input.toArray()
+        );
+
+        System.out.printf(
+                "Updated restaurant %s from table %s. Result status: %d\n",
+                r.getName(),
+                TABLE_NAME,
+                result
+        );
+        return result;
     }
 
     private static ArrayList<Restaurant> sqlite2restaurants(ArrayList<Object[]> data) {
